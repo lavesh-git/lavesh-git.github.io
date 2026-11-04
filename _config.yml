@@ -9,4 +9,5 @@ kramdown:
   syntax_highlighter: rouge
 exclude:
   - PUBLISHING.md
+  - scripts
   - Published/assets/cache-aside.excalidraw.md

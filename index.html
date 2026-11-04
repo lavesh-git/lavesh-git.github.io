@@ -1,7 +1,28 @@
 ---
 layout: note
-title: Notes on building systems
-description: Small explanations. Working examples. Diagrams that make things click.
+title: Your learning library
+description: Pick a notebook. Follow a chapter. Connect the ideas.
+category: The notebook index
+library_home: true
 ---
-<p>A place to connect concepts, code, and the tradeoffs behind a design.</p>
-<a class="card" href="/notes/cache-aside/"><span class="eyebrow">System design · Sample note</span><br><strong>Cache-aside: a tiny design, end to end ↗</strong><p>An editable Excalidraw sketch, a Python example, and an embedded illustration.</p></a>
+{% assign notebooks = site.pages | where: 'notebook_home', true | sort: 'order' %}
+<section class="library-section" aria-labelledby="notebooks-title">
+  <div class="section-heading"><h2 id="notebooks-title">Notebooks</h2><span class="count-pill">{{ notebooks.size }} notebooks</span></div>
+  <div class="notebook-grid">
+    {% for notebook in notebooks %}
+    {% assign folder = notebook.path | split: '/' | first %}
+    {% assign note_count = 0 %}
+    {% for note in site.pages %}
+      {% assign note_folder = note.path | split: '/' | first %}
+      {% if note_folder == folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{% assign note_count = note_count | plus: 1 %}{% endif %}
+    {% endfor %}
+    <a class="notebook-card {{ notebook.color | escape }}" href="{{ notebook.url | relative_url }}">
+      <div class="card-top"><span class="book-cover" aria-hidden="true">▤</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+      <h3>{{ notebook.title | escape }}</h3>
+      <p>{{ notebook.description | escape }}</p>
+      <div class="card-footer"><span>{{ note_count }} {% if note_count == 1 %}note{% else %}notes{% endif %}</span><span>Open notebook →</span></div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+<section class="library-note"><span class="tiny-book" aria-hidden="true">↳</span><div><h2>A place for everything you learn</h2><p>Your notebooks keep the big topics together. Chapters and subchapters help you find the detail when you need it.</p></div></section>

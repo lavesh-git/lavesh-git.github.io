@@ -1,7 +1,79 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{ page.title }} · {{ site.title }}</title>
-<style>
-:root{color-scheme:dark;--bg:#11151c;--panel:#191f29;--line:#303948;--text:#e9edf4;--muted:#a1adbf;--accent:#a5b4fc}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:4px}header{max-width:980px;margin:auto;padding:26px 32px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:24px;font-size:14px}header a{text-decoration:none}main{max-width:860px;margin:auto;padding:60px 32px 90px}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--accent);font-weight:700}h1{font-size:clamp(32px,5vw,48px);line-height:1.15;letter-spacing:-.035em;margin:16px 0}h2{font-size:25px;margin-top:48px;letter-spacing:-.02em}h3{font-size:20px}p,li{color:#c5cedc}.subtitle{color:var(--muted);font-size:19px;margin-bottom:32px}img{max-width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:#fff;margin:24px 0}blockquote{margin:24px 0;padding:14px 22px;border-left:3px solid var(--accent);background:var(--panel);border-radius:0 10px 10px 0}blockquote p{margin:0}pre{overflow:auto;background:#0c1017;padding:24px;border:1px solid var(--line);border-radius:12px;font-size:14px;line-height:1.7}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:var(--panel);padding:3px 6px;border-radius:4px;font-size:.87em}.k,.kd,.kn{color:#c4b5fd}.s,.s1,.s2{color:#a7f3d0}.c,.c1,.cm{color:#94a3b8}.mi,.mf{color:#fcd34d}.nf,.nb{color:#93c5fd}table{border-collapse:collapse;width:100%;font-size:15px}td,th{text-align:left;padding:12px;border-bottom:1px solid var(--line)}th{color:var(--muted)}footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.card{display:block;padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:14px;text-decoration:none;margin:30px 0}.card strong{font-size:21px;color:var(--text)}.card p{margin-bottom:0}hr{border:0;border-top:1px solid var(--line);margin:36px 0}@media(max-width:600px){main{padding:36px 20px}header{padding:20px}pre{padding:16px}}
-</style></head><body><header><a href="/">LAVESH / NOTES</a><a href="https://github.com/lavesh-git/lavesh-git.github.io">View source ↗</a></header><main><div class="eyebrow">{{ page.category | default: "Learning notebook" }}</div><h1>{{ page.title }}</h1>{% if page.description %}<p class="subtitle">{{ page.description }}</p>{% endif %}{{ content }}<footer>Written in Obsidian · Published with GitHub Pages</footer></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | escape }} · {{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.github.build_revision }}">
+  <script src="{{ '/assets/navigation.js' | relative_url }}?v={{ site.github.build_revision }}" defer></script>
+</head>
+<body>
+  {% assign notebooks = site.pages | where: 'notebook_home', true | sort: 'order' %}
+  {% assign current_folder = page.path | split: '/' | first %}
+  {% assign current_notebook = nil %}
+  {% for notebook in notebooks %}
+    {% assign notebook_folder = notebook.path | split: '/' | first %}
+    {% if notebook_folder == current_folder %}{% assign current_notebook = notebook %}{% endif %}
+  {% endfor %}
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark" aria-hidden="true">L</span> LAVESH <span class="brand-divider">/</span> NOTES</a>
+    <a class="source-link" href="https://github.com/lavesh-git/lavesh-git.github.io">View source ↗</a>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar" aria-label="Notebook navigation">
+      <details class="navigation-panel" open>
+        <summary class="mobile-navigation">Browse notebooks</summary>
+        <nav aria-label="Notebooks">
+          <a class="library-link{% if page.library_home %} active{% endif %}" href="{{ '/' | relative_url }}"{% if page.library_home %} aria-current="page"{% endif %}><span aria-hidden="true">▦</span> All notebooks</a>
+          <p class="nav-label">Your notebooks <span>{{ notebooks.size }}</span></p>
+          <ul class="notebook-list">
+            {% for notebook in notebooks %}
+            <li><a class="notebook-link{% if current_notebook.url == notebook.url %} selected{% endif %}" href="{{ notebook.url | relative_url }}"{% if page.url == notebook.url %} aria-current="page"{% endif %}>
+              <span class="notebook-symbol {{ notebook.color | escape }}" aria-hidden="true">▤</span><span>{{ notebook.title | escape }}</span>
+            </a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+        {% if current_notebook %}
+        <div class="chapter-navigation">
+          <p class="nav-label">Chapters</p>
+          <nav id="chapter-tree" aria-label="Chapters in {{ current_notebook.title | escape }}">{% include notebook-links.html notebook=current_notebook %}</nav>
+        </div>
+        {% endif %}
+        <p class="sidebar-footer">A little more connected,<br>one note at a time.</p>
+      </details>
+    </aside>
+    <main id="main-content" class="main-content{% if page.library_home %} library-content{% endif %}" tabindex="-1">
+      {% if current_notebook %}
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="{{ '/' | relative_url }}">Notebooks</a><span aria-hidden="true">/</span>
+        {% if page.notebook_home %}<span aria-current="page">{{ page.title | escape }}</span>
+        {% else %}<a href="{{ current_notebook.url | relative_url }}">{{ current_notebook.title | escape }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ page.title | escape }}</span>{% endif %}
+      </nav>
+      {% endif %}
+      <div class="eyebrow">{{ page.category | default: 'Learning notebook' | escape }}</div>
+      <h1>{{ page.title | escape }}</h1>
+      {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
+      <article class="note-content">{{ content }}</article>
+      {% if page.notebook_home %}
+      <section class="notebook-contents" aria-labelledby="chapters-title">
+        <h2 id="chapters-title">Chapters &amp; notes</h2>
+        <div id="notebook-contents">{% include notebook-links.html notebook=page %}</div>
+      </section>
+      {% endif %}
+      <footer class="page-footer">Written in Obsidian · Published with GitHub Pages</footer>
+    </main>
+  </div>
+  {% capture library_json %}
+  {
+    "currentPath": {{ page.path | jsonify }},
+    "currentUrl": {{ page.url | relative_url | jsonify }},
+    "notebooks": [{% for notebook in notebooks %}{% unless forloop.first %},{% endunless %}{"title": {{ notebook.title | jsonify }}, "folder": {{ notebook.path | split: '/' | first | jsonify }}, "url": {{ notebook.url | relative_url | jsonify }}}{% endfor %}],
+    "notes": [{% assign separator = '' %}{% for note in site.pages %}{% if note.layout == 'note' and note.notebook_home != true and note.library_home != true and note.published != false %}{{ separator }}{"title": {{ note.title | default: note.name | remove: '.md' | jsonify }}, "path": {{ note.path | jsonify }}, "url": {{ note.url | relative_url | jsonify }}, "order": {{ note.order | default: 9999 | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}]
+  }
+  {% endcapture %}
+  <script id="library-data" type="application/json">{{ library_json | replace: '</', '<\/' }}</script>
+</body>
+</html>

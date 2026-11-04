@@ -6,6 +6,16 @@
 !/index.html
 !/_layouts/
 !/_layouts/**
+!/_includes/
+!/_includes/**
+!/assets/
+!/assets/**
+!/scripts/
+!/scripts/**
+!/DSA/
+!/DSA/**
+!/System Design/
+!/System Design/**
 !/Published/
 !/Published/**
 !/PUBLISHING.md

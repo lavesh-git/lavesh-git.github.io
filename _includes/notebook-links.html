@@ -1,0 +1,13 @@
+{% assign folder = include.notebook.path | split: '/' | first %}
+{% assign count = 0 %}
+<ul class="fallback-notes">
+  {% assign sorted_notes = site.pages | sort: 'path' %}
+  {% for note in sorted_notes %}
+    {% assign note_folder = note.path | split: '/' | first %}
+    {% if note_folder == folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}
+      {% assign count = count | plus: 1 %}
+      <li><a href="{{ note.url | relative_url }}"{% if note.url == page.url %} aria-current="page"{% endif %}>{{ note.title | default: note.name | escape }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% if count == 0 %}<p class="empty-state">No chapters yet. This notebook is ready for your first note.</p>{% endif %}
