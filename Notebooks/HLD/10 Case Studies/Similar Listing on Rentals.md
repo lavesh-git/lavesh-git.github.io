@@ -1,0 +1,12 @@
+---
+title: "Similar Listing on Rentals"
+source: "OneNote / System Design - HLD / Case Studies"
+order: 44
+---
+
+# Similar Listing on Rentals
+
+[Alex Xu Book Prediction | Chapter 9: Similar Listings on Vacation Rental Platforms](<https://www.youtube.com/watch?v=OZoJSUz6gb8>)
+
+[Machine Learning Interview Question | System Design: Similar Item Recommendation (3+ Approaches)](<https://www.youtube.com/watch?v=yHr0-IZGojc&list=PLlvnxKilk3aJXqDN65Sm8vIqSyfJy4-v0&index=1&pp=iAQB>)
+

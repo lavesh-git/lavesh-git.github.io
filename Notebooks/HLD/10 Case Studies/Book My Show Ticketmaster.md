@@ -1,0 +1,14 @@
+---
+title: "Book My Show / Ticketmaster"
+source: "OneNote / System Design - HLD / Case Studies"
+order: 20
+---
+
+# Book My Show / Ticketmaster
+
+https://www.youtube.com/watch?v=yoJycKGFfAI
+
+[Amazon Interview Question | System Design: TicketMaster (3+ Approaches)](<https://www.youtube.com/watch?v=vhHMEJ_BMh8&list=PLlvnxKilk3aL1odj-6u0czr2D8K_GlIIS&index=7&pp=iAQB>)
+
+[System Design Interview: Design Ticketmaster w/ a Ex-Meta Staff Engineer](<https://www.youtube.com/watch?v=fhdPyoO6aXI>)
+

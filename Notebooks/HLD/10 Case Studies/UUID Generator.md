@@ -1,0 +1,41 @@
+---
+title: "UUID Generator *"
+source: "OneNote / System Design - HLD / Case Studies"
+order: 7
+---
+
+# UUID Generator \*
+
+- 2 Alex Xu - Chapter 7
+
+[Chapter 1: Introduction | Design a Unique ID Generator | System Design Roadmap](<https://www.youtube.com/watch?v=Zc85kCwfIUE>)
+
+[Chapter 2: Generate Unique ID Part 1 | Design a Unique ID Generator | System Design Roadmap](<https://www.youtube.com/watch?v=ijgaMu-VE4I&pp=0gcJCfYJAYcqIYzv>)
+
+[Chapter 3: Generate Unique ID Part 2 | Design a Unique ID Generator | System Design Roadmap](<https://www.youtube.com/watch?v=4ZcaTW4JCGo>)
+
+[System Design - Part 12 | Design a Unique ID Generator | 4 Methods](<https://www.youtube.com/watch?v=ogOKDhOa_cs&list=PLFdAYMIVJQHOWJgRrjv_RH-ng95B2h3ON&index=12&pp=iAQB>)
+
+export function uuidv4(): string {
+
+return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/\[xy\]/g, (c: any) => {
+
+const r = (Math.random() \* 16) | 0;
+
+const v = c === 'x' ? r : (r & 0x3) | 0x8;
+
+return v.toString(16);
+
+});
+
+}
+
+CREATE TABLE Users (
+
+**UserID int NOT NULL AUTO_INCREMENT,**
+
+Username varchar(255) NOT NULL,
+
+**PRIMARY KEY (UserID)**
+
+);

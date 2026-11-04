@@ -1,0 +1,13 @@
+---
+title: "AIRBNB *"
+source: "OneNote / System Design - HLD / Case Studies"
+order: 74
+---
+
+# AIRBNB \*
+
+[Unified Payments Data Read at Airbnb | Airbnb System Design | Payment System Architecture](<https://www.youtube.com/watch?v=PsAqbySBkbQ>)
+
+Hotel booking service like Airbnb: [https://lnkd.in/gWjrGwCM](<https://www.linkedin.com/safety/go/?url=https%3A%2F%2Flnkd%2Ein%2FgWjrGwCM&urlhash=A4jA&mt=D4kbr4kehM-oUaqjKRa_bNw1NfNANLj4YJX44iOZvEvxzJe3bJXLOopESC3VPCw57OYf7--bhjcsImpkWpAFz6RwV36OQEy7qV8V1npVrLXmzWH8HhJJiav_VTtDH0NG5MjPXERB68j0H_g3AMRdKE6hoXda2-U9sVdf_m1Q5X3MwoPNAU7mxvEw1IhnvDklbw&isSdui=true>)
+
+- 1 Zhiyong Tan - Chapter  15

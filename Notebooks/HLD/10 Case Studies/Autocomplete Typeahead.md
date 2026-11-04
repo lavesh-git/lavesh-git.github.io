@@ -1,0 +1,20 @@
+---
+title: "Autocomplete/Typeahead **"
+source: "OneNote / System Design - HLD / Case Studies"
+order: 97
+---
+
+# Autocomplete/Typeahead \*\*
+
+[System Design: Search Auto-complete (with FAANG Senior Engineer)](<https://www.youtube.com/watch?v=y1PU0_d3Kdg&list=PLlvnxKilk3aJXqDN65Sm8vIqSyfJy4-v0&index=44&pp=iAQB>)
+
+Autocomplete feature of Google: [https://lnkd.in/g3VFcaYN](<https://www.linkedin.com/safety/go/?url=https%3A%2F%2Flnkd%2Ein%2Fg3VFcaYN&urlhash=IjEU&mt=oba3jAJBe_QPXXfKL4eWvt2MSRw49U8lvguP5WbtKc2HBRjT0pb_k5Xv_tfzs24m2wRNjTGufGnNIbu8tuiyqorhE4OCbJzDNwAc70tA9e6PDZZxYw_MK1Qv2S9zvo5k-4hrnaRUzTreqCYD5YEIfDxLNuY8LUwU--p7J5385pMOTfCq_85VF1_h_eTp5GN_-A&isSdui=true>)
+
+  - 2 Alex Xu - Chapter 13
+
+  - 1 Zhiyong Tan - Chapter 11
+
+[Design Search Autocomplete | Design Google Search | High Level Design | System Design Roadmap](<https://www.youtube.com/watch?v=fdH-c8bQ32Y>)
+
+[Design Search Autocomplete | Design Google Search | Design Deep Dive | System Design Roadmap](<https://www.youtube.com/watch?v=jJDHgNYQzX4>)
+

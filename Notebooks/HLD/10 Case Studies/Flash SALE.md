@@ -1,0 +1,10 @@
+---
+title: "Flash SALE"
+source: "OneNote / System Design - HLD / Case Studies"
+order: 90
+---
+
+# Flash SALE
+
+[Google Interview Question | System Design: Flash Sale (5+ Approaches)](<https://www.youtube.com/watch?v=462JSRNPDNs&list=PLlvnxKilk3aJXqDN65Sm8vIqSyfJy4-v0&index=34&pp=iAQB0gcJCX4JAYcqIYzv>)
+
