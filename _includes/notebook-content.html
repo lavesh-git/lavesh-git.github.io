@@ -12,7 +12,7 @@ but omit it here only when the opening H1 repeats that same title.
 {%- if opening_tag == '<h1' -%}
   {%- assign opening_heading = trimmed_content | split: '</h1>' | first | append: '</h1>' -%}
   {%- assign heading_text = opening_heading | strip_html | strip -%}
-  {%- assign title_text = display_title | markdownify | strip_html | strip -%}
+  {%- assign title_text = display_title | replace: '|', '\|' | markdownify | strip_html | strip -%}
   {%- if heading_text == title_text -%}
     {%- assign rendered_content = trimmed_content | remove_first: opening_heading -%}
   {%- endif -%}
