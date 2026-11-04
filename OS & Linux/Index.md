@@ -4,7 +4,7 @@ title: "OS & Linux"
 description: "Operating system fundamentals and practical Linux notes."
 category: Notebook / 06
 notebook_home: true
-icon: "🐧"
+icon: terminal
 publish: true
 color: mint
 order: 6

@@ -4,7 +4,7 @@ title: "Networking"
 description: "Protocols, connections, and how systems communicate."
 category: Notebook / 04
 notebook_home: true
-icon: "🌐"
+icon: network
 publish: true
 color: mint
 order: 4

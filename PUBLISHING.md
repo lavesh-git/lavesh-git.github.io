@@ -35,7 +35,7 @@ layout: note
 title: Core Java
 description: Language fundamentals and implementation notes.
 notebook_home: true
-icon: "☕"
+icon: code
 publish: true
 color: violet
 order: 7
@@ -54,12 +54,23 @@ The allowed notebook folders are `HLD/`, `LLD/`, `DSA/`, `Networking/`,
 Each notebook's `Index.md` has two editable properties:
 
 ```yaml
-icon: "🏗️"
+icon: architecture
 publish: true
 ```
 
-Set `icon` to any emoji; the same icon appears on the card and in the sidebar.
-If `icon` is missing, the site uses 📚. Set `publish: false` to hide the notebook
+Choose a line icon by name; the same SVG appears on the card and in the sidebar:
+
+| Icon | Represents |
+| --- | --- |
+| `architecture` | HLD: system architecture |
+| `code` | LLD: implementation and code |
+| `algorithm` | DSA: connected data structures |
+| `network` | Networking: connected machines |
+| `database` | Database: storage cylinder |
+| `terminal` | OS & Linux: terminal prompt |
+| `book` | General notebook |
+
+Missing or unknown icon names fall back to `book`. Set `publish: false` to hide the notebook
 from both lists. Notebooks without `publish: true` are hidden by default.
 Use actual YAML booleans (`true` or `false`), not quoted strings.
 

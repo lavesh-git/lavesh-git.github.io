@@ -148,12 +148,12 @@ a:focus-visible,summary:focus-visible {
   color:#e2e2ff;
 }
 .notebook-symbol {
-  color:#aaa9ff;
-  font-size:23px;
+  color:#aaa9cf;
+  align-items:center;
   line-height:1;
 }
 .notebook-symbol.mint {
-  color:#79d7bc;
+  color:#91bdaf;
 }
 .chapter-navigation {
   margin-top:26px;
@@ -322,21 +322,20 @@ p,li {
   justify-content:space-between;
   align-items:flex-start;
 }
-.book-cover {
+.notebook-icon-tile {
   display:grid;
   place-items:center;
   width:54px;
-  height:62px;
-  border-radius:5px 10px 10px 5px;
-  background:#373654;
-  color:#c9c4ff;
-  border-left:4px solid #8c86d4;
-  font-size:30px;
+  height:54px;
+  border-radius:10px;
+  background:#292b43;
+  color:#b8b5e5;
+  border:1px solid #3b3d59;
 }
-.mint .book-cover {
-  background:#25413d;
-  color:#a6e7d5;
-  border-left-color:#60b99e;
+.mint .notebook-icon-tile {
+  background:#20332f;
+  color:#9bcabc;
+  border-color:#344b45;
 }
 .card-arrow {
   font-size:21px;
@@ -613,4 +612,17 @@ html {
   .brand > span {
     font-size: 14px;
   }
+}
+
+.notebook-icon {
+  display: block;
+  flex-shrink: 0;
+}
+.notebook-symbol .notebook-icon {
+  width: 20px;
+  height: 20px;
+}
+.notebook-icon-tile .notebook-icon {
+  width: 28px;
+  height: 28px;
 }

@@ -4,7 +4,7 @@ title: "Database"
 description: "Data modelling, storage engines, indexes, and transactions."
 category: Notebook / 05
 notebook_home: true
-icon: "🗄️"
+icon: database
 publish: true
 color: violet
 order: 5

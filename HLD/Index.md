@@ -4,7 +4,7 @@ title: "HLD"
 description: "Architecture, building blocks, and the tradeoffs behind reliable systems."
 category: Notebook / 01
 notebook_home: true
-icon: "🏗️"
+icon: architecture
 publish: true
 color: violet
 order: 1

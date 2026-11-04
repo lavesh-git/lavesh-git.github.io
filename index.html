@@ -18,7 +18,7 @@ library_home: true
       {% if note_folder == folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{% assign note_count = note_count | plus: 1 %}{% endif %}
     {% endfor %}
     <a class="notebook-card {{ notebook.color | escape }}" href="{{ notebook.url | relative_url }}">
-      <div class="card-top"><span class="book-cover" aria-hidden="true">{{ notebook.icon | default: '📚' | escape }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+      <div class="card-top"><span class="notebook-icon-tile" aria-hidden="true">{% include notebook-icon.html icon=notebook.icon %}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
       <h3>{{ notebook.title | escape }}</h3>
       <p>{{ notebook.description | escape }}</p>
       <div class="card-footer"><span>{{ note_count }} {% if note_count == 1 %}note{% else %}notes{% endif %}</span><span>Open notebook →</span></div>

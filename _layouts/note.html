@@ -32,7 +32,7 @@
           <ul class="notebook-list">
             {% for notebook in notebooks %}
             <li><a class="notebook-link{% if current_notebook.url == notebook.url %} selected{% endif %}" href="{{ notebook.url | relative_url }}"{% if page.url == notebook.url %} aria-current="page"{% endif %}>
-              <span class="notebook-symbol {{ notebook.color | escape }}" aria-hidden="true">{{ notebook.icon | default: '📚' | escape }}</span><span>{{ notebook.title | escape }}</span>
+              <span class="notebook-symbol {{ notebook.color | escape }}" aria-hidden="true">{% include notebook-icon.html icon=notebook.icon %}</span><span>{{ notebook.title | escape }}</span>
             </a></li>
             {% endfor %}
           </ul>

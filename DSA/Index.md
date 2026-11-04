@@ -4,7 +4,7 @@ title: "DSA"
 description: "Data structures, algorithms, and patterns for solving problems."
 category: Notebook / 03
 notebook_home: true
-icon: "🧠"
+icon: algorithm
 publish: true
 color: mint
 order: 3

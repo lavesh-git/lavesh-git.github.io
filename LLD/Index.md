@@ -4,7 +4,7 @@ title: "LLD"
 description: "Object-oriented design, design patterns, and maintainable implementations."
 category: Notebook / 02
 notebook_home: true
-icon: "🧩"
+icon: code
 publish: true
 color: violet
 order: 2
