@@ -42,12 +42,12 @@ but omit it here only when the opening H1 repeats that same title.
   {%- assign current_parts = page.path | split: '/' -%}
   {%- assign directory_length = current_parts.size | minus: 1 -%}
   {%- assign current_directory = current_parts | slice: 0, directory_length | join: '/' -%}
+  {%- assign current_prefix = current_directory | append: '/' -%}
+  {%- assign prefix_length = current_prefix.size -%}
   {%- for linked_note in site.pages -%}
-    {%- assign linked_parts = linked_note.path | split: '/' -%}
-    {%- assign linked_directory_length = linked_parts.size | minus: 1 -%}
-    {%- assign linked_directory = linked_parts | slice: 0, linked_directory_length | join: '/' -%}
-    {%- if linked_directory == current_directory and linked_note.layout == 'note' -%}
-      {%- assign source_filename = linked_note.path | split: '/' | last | url_encode | replace: '+', '%20' -%}
+    {%- assign linked_prefix = linked_note.path | slice: 0, prefix_length -%}
+    {%- if linked_prefix == current_prefix and linked_note.layout == 'note' -%}
+      {%- assign source_filename = linked_note.path | remove_first: current_prefix | url_encode | replace: '+', '%20' | replace: '%2F', '/' -%}
       {%- assign source_href = 'href="' | append: source_filename | append: '"' -%}
       {%- assign destination_url = linked_note.url | relative_url | uri_escape | escape -%}
       {%- assign destination_href = 'href="' | append: destination_url | append: '"' -%}

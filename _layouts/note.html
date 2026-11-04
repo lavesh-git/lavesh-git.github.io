@@ -61,7 +61,7 @@
       <h1>{{ display_title | escape }}</h1>
       {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
       <article class="note-content">{% include notebook-content.html content=content %}</article>
-      {% if page.notebook_home %}
+      {% if page.notebook_home and page.chapter_index != true %}
       <section class="notebook-contents" aria-labelledby="chapters-title">
         <h2 id="chapters-title">Chapters &amp; notes</h2>
         <div id="notebook-contents">{% include notebook-links.html notebook=page %}</div>
@@ -74,6 +74,7 @@
   {
     "currentPath": {{ page.path | remove_first: vault_prefix | jsonify }},
     "currentUrl": {{ page.url | relative_url | jsonify }},
+    "chapterIndex": {{ page.chapter_index | default: false | jsonify }},
     "notebooks": [{% for notebook in notebooks %}{% unless forloop.first %},{% endunless %}{"title": {{ notebook.title | jsonify }}, "folder": {{ notebook.path | remove_first: vault_prefix | split: '/' | first | jsonify }}, "url": {{ notebook.url | relative_url | jsonify }}}{% endfor %}],
     "notes": [{% assign separator = '' %}{% for notebook in notebooks %}{% assign notebook_folder = notebook.path | remove_first: vault_prefix | split: '/' | first %}{% for note in site.pages %}{% assign note_folder = note.path | remove_first: vault_prefix | split: '/' | first %}{% if note_folder == notebook_folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{{ separator }}{"title": {{ note.title | default: note.name | remove: '.md' | jsonify }}, "path": {{ note.path | remove_first: vault_prefix | jsonify }}, "url": {{ note.url | relative_url | jsonify }}, "order": {{ note.order | default: 9999 | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}{% endfor %}]
   }

@@ -100,7 +100,7 @@
         const contents = document.getElementById('notebook-contents');
         if (sidebar) sidebar.replaceChildren(renderTree(tree, {
           currentUrl: data.currentUrl,
-          expandAll: notebook.url === data.currentUrl,
+          expandAll: notebook.url === data.currentUrl && !data.chapterIndex,
           showOutline: true
         }));
         if (contents) contents.replaceChildren(renderTree(tree, {
