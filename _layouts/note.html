@@ -28,7 +28,7 @@
         <summary class="mobile-navigation">Browse notebooks</summary>
         <nav aria-label="Notebooks">
           <a class="library-link{% if page.library_home %} active{% endif %}" href="{{ '/' | relative_url }}"{% if page.library_home %} aria-current="page"{% endif %}><span aria-hidden="true">▦</span> All notebooks</a>
-          <p class="nav-label">Your notebooks <span>{{ notebooks.size }}</span></p>
+          <p class="nav-label">Notebooks <span>{{ notebooks.size }}</span></p>
           <ul class="notebook-list">
             {% for notebook in notebooks %}
             <li><a class="notebook-link{% if current_notebook.url == notebook.url %} selected{% endif %}" href="{{ notebook.url | relative_url }}"{% if page.url == notebook.url %} aria-current="page"{% endif %}>
