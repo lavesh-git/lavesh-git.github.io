@@ -3,6 +3,20 @@ Notes use vault-root asset paths. Prefix those paths only in rendered HTML,
 so the same Markdown works in Obsidian and on the website.
 {%- endcomment -%}
 {%- assign rendered_content = include.content -%}
+{%- comment -%}
+The layout supplies the page title. Keep the source heading for Obsidian,
+but omit it here only when the opening H1 repeats that same title.
+{%- endcomment -%}
+{%- assign trimmed_content = rendered_content | strip -%}
+{%- assign opening_tag = trimmed_content | slice: 0, 3 -%}
+{%- if opening_tag == '<h1' -%}
+  {%- assign opening_heading = trimmed_content | split: '</h1>' | first | append: '</h1>' -%}
+  {%- assign heading_text = opening_heading | strip_html | strip -%}
+  {%- assign title_text = display_title | markdownify | strip_html | strip -%}
+  {%- if heading_text == title_text -%}
+    {%- assign rendered_content = trimmed_content | remove_first: opening_heading -%}
+  {%- endif -%}
+{%- endif -%}
 {%- assign all_notebooks = site.pages | where: 'notebook_home', true -%}
 {%- assign study_roots = site.pages | where: 'study_hub', true -%}
 {%- assign all_notebooks = all_notebooks | concat: study_roots -%}
