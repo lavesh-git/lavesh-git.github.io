@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Bitcoin"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 102

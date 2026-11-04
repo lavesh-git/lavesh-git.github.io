@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "A/B Testing"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 29

@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Discord"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 76

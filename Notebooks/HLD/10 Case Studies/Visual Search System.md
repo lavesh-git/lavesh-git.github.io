@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Visual Search System"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 52

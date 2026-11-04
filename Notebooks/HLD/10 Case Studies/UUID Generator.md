@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "UUID Generator *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 7

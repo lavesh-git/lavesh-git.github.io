@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Payment Checkout System"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 71

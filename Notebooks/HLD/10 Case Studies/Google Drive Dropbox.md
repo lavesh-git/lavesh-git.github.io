@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Google Drive / Dropbox *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 5

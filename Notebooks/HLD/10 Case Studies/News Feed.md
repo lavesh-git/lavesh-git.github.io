@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "News Feed **"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 85

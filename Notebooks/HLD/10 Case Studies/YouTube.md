@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "YouTube *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 13

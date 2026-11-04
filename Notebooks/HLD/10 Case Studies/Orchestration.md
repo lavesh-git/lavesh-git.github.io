@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Orchestration"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 17

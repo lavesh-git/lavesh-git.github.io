@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Health Check Endpoint Migration"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 86

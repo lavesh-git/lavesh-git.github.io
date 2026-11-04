@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Highly Available system"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 73

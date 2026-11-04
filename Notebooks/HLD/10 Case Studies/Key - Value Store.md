@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Key - Value Store"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 8

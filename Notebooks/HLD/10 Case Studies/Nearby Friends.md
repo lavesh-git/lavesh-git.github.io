@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Nearby Friends *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 12

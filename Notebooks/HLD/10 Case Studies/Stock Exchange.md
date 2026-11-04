@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Stock Exchange *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 63

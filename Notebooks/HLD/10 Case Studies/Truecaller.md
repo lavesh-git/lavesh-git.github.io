@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Truecaller"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 77

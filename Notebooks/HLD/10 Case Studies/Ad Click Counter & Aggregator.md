@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Ad Click Counter & Aggregator *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 15

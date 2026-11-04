@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Reddit"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 40

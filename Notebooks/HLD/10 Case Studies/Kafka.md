@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Kafka"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 2

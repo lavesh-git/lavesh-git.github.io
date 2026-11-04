@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Flash SALE"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 90

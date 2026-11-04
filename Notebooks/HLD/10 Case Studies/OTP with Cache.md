@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "OTP with Cache"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 50

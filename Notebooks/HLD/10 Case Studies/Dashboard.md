@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Dashboard"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 96

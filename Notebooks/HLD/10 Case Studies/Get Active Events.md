@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Get Active Events"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 62

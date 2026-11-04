@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Recommendation Engine"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 47

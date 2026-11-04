@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Database Batch Auditing *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 84

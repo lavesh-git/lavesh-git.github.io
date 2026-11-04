@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Slack"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 70

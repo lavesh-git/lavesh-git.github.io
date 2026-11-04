@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Ad Click Prediction"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 49

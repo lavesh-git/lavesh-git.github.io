@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Uber Eats"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 72

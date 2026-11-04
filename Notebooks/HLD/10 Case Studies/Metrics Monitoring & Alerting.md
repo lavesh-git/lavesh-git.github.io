@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Metrics Monitoring & Alerting *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 16

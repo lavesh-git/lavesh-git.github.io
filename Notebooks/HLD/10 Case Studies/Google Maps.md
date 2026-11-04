@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Google Maps *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 1

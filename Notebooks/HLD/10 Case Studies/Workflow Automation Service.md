@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Workflow Automation Service"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 30

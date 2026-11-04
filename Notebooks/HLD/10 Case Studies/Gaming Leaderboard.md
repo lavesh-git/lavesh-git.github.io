@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Gaming Leaderboard *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 34

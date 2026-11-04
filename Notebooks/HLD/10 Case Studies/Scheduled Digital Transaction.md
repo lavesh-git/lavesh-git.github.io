@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Scheduled Digital Transaction"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 65

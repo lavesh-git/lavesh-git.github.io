@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Traffic Violation Detection"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 41

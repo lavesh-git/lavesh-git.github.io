@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Similar Listing on Rentals"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 44

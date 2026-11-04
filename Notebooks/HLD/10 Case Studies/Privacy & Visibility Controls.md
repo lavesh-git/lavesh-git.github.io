@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Privacy & Visibility Controls"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 64

@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Whatsapp **"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 68

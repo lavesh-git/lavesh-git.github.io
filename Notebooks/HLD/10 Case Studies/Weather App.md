@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Weather App"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 89

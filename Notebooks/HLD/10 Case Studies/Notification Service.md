@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Notification Service **"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 83

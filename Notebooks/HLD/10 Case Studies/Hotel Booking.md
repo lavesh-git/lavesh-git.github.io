@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Hotel Booking *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 23

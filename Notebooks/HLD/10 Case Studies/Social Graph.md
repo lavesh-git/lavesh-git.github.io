@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Social Graph"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 95

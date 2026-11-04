@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Personalized Newsfeed"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 42

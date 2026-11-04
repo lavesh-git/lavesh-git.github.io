@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Distributed Counter"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 10

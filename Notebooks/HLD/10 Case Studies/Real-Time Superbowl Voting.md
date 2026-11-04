@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Real-Time Superbowl Voting"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 39

@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Streaming"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 92

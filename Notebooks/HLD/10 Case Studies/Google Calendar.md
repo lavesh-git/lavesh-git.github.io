@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Google Calendar"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 61

@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Google StreetView BLUR"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 14

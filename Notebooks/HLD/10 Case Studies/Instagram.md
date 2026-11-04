@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Instagram"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 82

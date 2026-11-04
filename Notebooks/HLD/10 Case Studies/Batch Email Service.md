@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Batch Email Service"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 21

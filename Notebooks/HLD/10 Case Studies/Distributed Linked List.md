@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Distributed Linked List"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 58

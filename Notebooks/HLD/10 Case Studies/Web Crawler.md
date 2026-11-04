@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Web Crawler *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 22

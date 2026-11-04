@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Price Drop Tracker"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 56

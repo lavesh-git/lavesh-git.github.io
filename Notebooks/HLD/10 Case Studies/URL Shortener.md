@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "URL Shortener *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 6

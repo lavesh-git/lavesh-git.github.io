@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "CDN *"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 99

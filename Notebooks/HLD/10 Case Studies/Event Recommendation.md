@@ -1,4 +1,5 @@
 ---
+layout: note
 title: "Event Recommendation"
 source: "OneNote / System Design - HLD / Case Studies"
 order: 46

@@ -24,4 +24,21 @@ so the same Markdown works in Obsidian and on the website.
     {%- assign rendered_content = rendered_content | replace: raw_attribute, site_attribute | replace: escaped_attribute, site_attribute | replace: encoded_attribute, site_attribute -%}
   {%- endfor -%}
 {%- endfor -%}
+{%- if page.resolve_note_links -%}
+  {%- assign current_parts = page.path | split: '/' -%}
+  {%- assign directory_length = current_parts.size | minus: 1 -%}
+  {%- assign current_directory = current_parts | slice: 0, directory_length | join: '/' -%}
+  {%- for linked_note in site.pages -%}
+    {%- assign linked_parts = linked_note.path | split: '/' -%}
+    {%- assign linked_directory_length = linked_parts.size | minus: 1 -%}
+    {%- assign linked_directory = linked_parts | slice: 0, linked_directory_length | join: '/' -%}
+    {%- if linked_directory == current_directory and linked_note.layout == 'note' -%}
+      {%- assign source_filename = linked_note.path | split: '/' | last | url_encode | replace: '+', '%20' -%}
+      {%- assign source_href = 'href="' | append: source_filename | append: '"' -%}
+      {%- assign destination_url = linked_note.url | relative_url | uri_escape | escape -%}
+      {%- assign destination_href = 'href="' | append: destination_url | append: '"' -%}
+      {%- assign rendered_content = rendered_content | replace: source_href, destination_href -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
 {{- rendered_content -}}
