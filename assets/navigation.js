@@ -26,6 +26,38 @@
       }
       parent.children.set('note:' + note.path, { ...note, order });
     }
+    // Numbered sibling notes retain their OneNote parent/child hierarchy.
+    // Resolve within each folder so identical numbers in other notebooks stay separate.
+    function nestNumberedNotes(node) {
+      const numbered = new Map();
+      for (const entry of node.children.values()) {
+        if (entry.children) nestNumberedNotes(entry);
+        if (!entry.path) continue;
+        const match = entry.title.match(/^(\d+(?:\.\d+)+)\s/);
+        if (match) numbered.set(match[1], entry);
+      }
+      for (const [number, entry] of numbered) {
+        const parts = number.split('.');
+        parts.pop();
+        let parent;
+        while (parts.length > 1 && !parent) {
+          parent = numbered.get(parts.join('.'));
+          if (!parent) parts.pop();
+        }
+        if (!parent) continue;
+        if (!parent.children) parent.children = new Map();
+        parent.children.set('note:' + entry.path, entry);
+        node.children.delete('note:' + entry.path);
+      }
+      // A folder's index is available from the folder label itself.
+      for (const [key, entry] of node.children) {
+        if (entry.path && entry.path.split('/').pop() === 'Index.md' && node !== root) {
+          node.url = entry.url;
+          node.children.delete(key);
+        }
+      }
+    }
+    nestNumberedNotes(root);
     function sortTree(node) {
       return Array.from(node.children.values()).sort(compareEntries).map(entry => {
         return entry.children ? { ...entry, children: sortTree(entry) } : entry;
@@ -38,7 +70,33 @@
     return node.url === url || Boolean(node.children && node.children.some(child => containsPage(child, url)));
   }
 
-  // The same tree powers both the sidebar and a notebook's contents page.
+  function noteLink(node, currentUrl) {
+    const link = document.createElement('a');
+    link.textContent = node.title;
+    link.href = node.url;
+    if (node.url === currentUrl) link.setAttribute('aria-current', 'page');
+    return link;
+  }
+
+  function appendOutline(item, node, options) {
+    if (!options.showOutline || node.url !== options.currentUrl) return;
+    const headings = document.querySelectorAll('.note-content h2[id], .note-content h3[id]');
+    if (!headings.length) return;
+    const outline = document.createElement('ul');
+    outline.className = 'page-outline';
+    for (const heading of headings) {
+      const row = document.createElement('li');
+      const anchor = document.createElement('a');
+      anchor.textContent = heading.textContent;
+      anchor.href = '#' + encodeURIComponent(heading.id);
+      if (heading.tagName === 'H3') anchor.className = 'subheading';
+      row.append(anchor);
+      outline.append(row);
+    }
+    item.append(outline);
+  }
+
+  // The same numbered tree powers the sidebar and notebook contents.
   function renderTree(nodes, options) {
     const list = document.createElement('ul');
     list.className = 'chapter-tree';
@@ -48,32 +106,15 @@
         const group = document.createElement('details');
         group.open = options.expandAll || containsPage(node, options.currentUrl);
         const summary = document.createElement('summary');
-        summary.textContent = node.title;
-        group.append(summary, renderTree(node.children, options));
+        if (node.url) summary.append(noteLink(node, options.currentUrl));
+        else summary.textContent = node.title;
+        group.append(summary);
+        appendOutline(group, node, options);
+        group.append(renderTree(node.children, options));
         item.append(group);
       } else {
-        const link = document.createElement('a');
-        link.textContent = node.title;
-        link.href = node.url;
-        if (node.url === options.currentUrl) link.setAttribute('aria-current', 'page');
-        item.append(link);
-        if (options.showOutline && node.url === options.currentUrl) {
-          const headings = document.querySelectorAll('.note-content h2[id], .note-content h3[id]');
-          if (headings.length) {
-            const outline = document.createElement('ul');
-            outline.className = 'page-outline';
-            for (const heading of headings) {
-              const row = document.createElement('li');
-              const anchor = document.createElement('a');
-              anchor.textContent = heading.textContent;
-              anchor.href = '#' + encodeURIComponent(heading.id);
-              if (heading.tagName === 'H3') anchor.className = 'subheading';
-              row.append(anchor);
-              outline.append(row);
-            }
-            item.append(outline);
-          }
-        }
+        item.append(noteLink(node, options.currentUrl));
+        appendOutline(item, node, options);
       }
       list.append(item);
     }
@@ -105,7 +146,7 @@
         }));
         if (contents) contents.replaceChildren(renderTree(tree, {
           currentUrl: data.currentUrl,
-          expandAll: true,
+          expandAll: !data.chapterIndex,
           showOutline: false
         }));
       }

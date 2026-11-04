@@ -61,9 +61,9 @@
       <h1>{{ display_title | escape }}</h1>
       {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
       <article class="note-content">{% include notebook-content.html content=content %}</article>
-      {% if page.notebook_home and page.chapter_index != true %}
+      {% if page.notebook_home %}
       <section class="notebook-contents" aria-labelledby="chapters-title">
-        <h2 id="chapters-title">Chapters &amp; notes</h2>
+        <h2 id="chapters-title">{% if page.chapter_index %}Chapters{% else %}Chapters &amp; notes{% endif %}</h2>
         <div id="notebook-contents">{% include notebook-links.html notebook=page %}</div>
       </section>
       {% endif %}
