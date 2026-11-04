@@ -17,9 +17,9 @@ The database remains the source of truth. A cache speeds up reads, but adds ques
 
 ## Sketch the read path
 
-![Excalidraw diagram showing the client, API, cache lookup, and database fallback](/Published/assets/cache-aside.excalidraw.svg)
+![Excalidraw diagram showing the client, API, cache lookup, and database fallback](/HLD/assets/cache-aside.excalidraw.svg)
 
-[Open the editable Excalidraw drawing in Obsidian](obsidian://open?vault=Notes&file=Published%2Fassets%2Fcache-aside.excalidraw.md)
+[Open the editable Excalidraw drawing in Obsidian](obsidian://open?vault=Notes&file=HLD%2Fassets%2Fcache-aside.excalidraw.md)
 
 1. A client asks the API for a user.
 2. The API looks up the user in the cache.
@@ -46,7 +46,7 @@ This is pseudocode with simplified cache and database interfaces. A real impleme
 
 ## An image makes the tradeoff visible
 
-![Illustrative latency chart: a cache hit takes 2 milliseconds, compared with a 40 millisecond database read](/Published/assets/latency-example.svg)
+![Illustrative latency chart: a cache hit takes 2 milliseconds, compared with a 40 millisecond database read](/HLD/assets/latency-example.svg)
 
 These are **made-up numbers**, not benchmark results. At an assumed 90% hit rate, a sequential cache-first lookup would average approximately `2 + (0.10 × 40) = 6 ms`, excluding network overhead and cache writes. Tail latency can still be much worse.
 

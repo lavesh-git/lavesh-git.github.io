@@ -11,12 +11,13 @@ Notes/
     Index.md                         # Notebook homepage
     Caching/
       Cache Aside Demo.md            # Chapter note; existing URL preserved
+    assets/                          # HLD drawings, images, and exports
   LLD/Index.md
   DSA/Index.md
   Networking/Index.md
   Database/Index.md
   OS & Linux/Index.md
-  Published/assets/                  # Shared drawing sources and images
+  assets/                            # Site-wide CSS, scripts, and favicon
 ```
 
 The site lists notebook homepages with both `notebook_home: true` and `publish: true`.
@@ -88,13 +89,18 @@ still public in this GitHub repository**. Keep private notes outside allowed fol
 ## Edit diagrams and publish
 
 1. Edit notes in their notebook folders in Obsidian.
-2. Open `Published/assets/cache-aside.excalidraw.md` with the Excalidraw plugin.
+2. Open `HLD/assets/cache-aside.excalidraw.md` with the Excalidraw plugin.
 3. Save the drawing (Cmd+S) to refresh its adjacent SVG automatically.
 4. Review changes in Obsidian Git, then commit and push to `master`.
 5. GitHub Pages builds the site automatically from `master` / root.
 
 The website displays the exported SVG; the drawing remains editable in Obsidian.
-Standard Markdown image links work in both the vault and the website.
+Keep each notebook self-contained: place its drawing sources, exported SVGs,
+images, and other attachments inside that notebook's `assets/` folder. For
+example, use `HLD/assets/` for HLD notes and `LLD/assets/` for LLD notes.
+The root `assets/` folder is reserved for shared website code and the favicon.
+Use vault-root Markdown links such as `![Diagram](/HLD/assets/example.svg)`
+so image paths work in both Obsidian and GitHub Pages, even with custom permalinks.
 The existing demo remains at `/notes/cache-aside/`. The former System Design
 notebook URL redirects to `/notebooks/hld/`.
 

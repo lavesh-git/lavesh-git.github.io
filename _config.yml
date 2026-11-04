@@ -10,4 +10,4 @@ kramdown:
 exclude:
   - PUBLISHING.md
   - scripts
-  - Published/assets/cache-aside.excalidraw.md
+  - HLD/assets/cache-aside.excalidraw.md
