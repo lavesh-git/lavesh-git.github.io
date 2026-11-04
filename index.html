@@ -1,13 +1,14 @@
 ---
 layout: note
-title: Your learning library
+title: "Lavesh's Notes"
 description: Pick a notebook. Follow a chapter. Connect the ideas.
 category: The notebook index
 library_home: true
 ---
-{% assign notebooks = site.pages | where: 'notebook_home', true | sort: 'order' %}
+{% assign notebooks = site.pages | where: 'notebook_home', true | where: 'publish', true | sort: 'order' %}
 <section class="library-section" aria-labelledby="notebooks-title">
   <div class="section-heading"><h2 id="notebooks-title">Notebooks</h2><span class="count-pill">{{ notebooks.size }} notebooks</span></div>
+  {% if notebooks.size == 0 %}<p class="empty-state">No notebooks to display.</p>{% endif %}
   <div class="notebook-grid">
     {% for notebook in notebooks %}
     {% assign folder = notebook.path | split: '/' | first %}
@@ -17,7 +18,7 @@ library_home: true
       {% if note_folder == folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{% assign note_count = note_count | plus: 1 %}{% endif %}
     {% endfor %}
     <a class="notebook-card {{ notebook.color | escape }}" href="{{ notebook.url | relative_url }}">
-      <div class="card-top"><span class="book-cover" aria-hidden="true">▤</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+      <div class="card-top"><span class="book-cover" aria-hidden="true">{{ notebook.icon | default: '📚' | escape }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
       <h3>{{ notebook.title | escape }}</h3>
       <p>{{ notebook.description | escape }}</p>
       <div class="card-footer"><span>{{ note_count }} {% if note_count == 1 %}note{% else %}notes{% endif %}</span><span>Open notebook →</span></div>

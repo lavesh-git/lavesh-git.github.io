@@ -2,7 +2,7 @@
 layout: note
 title: "Cache-aside: a tiny design, end to end"
 description: "Follow a read from the client to the cache and database."
-category: "System design / Caching"
+category: "HLD / Caching"
 permalink: /notes/cache-aside/
 tags: [system-design, caching, demo]
 ---

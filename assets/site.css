@@ -63,20 +63,7 @@ a:focus-visible,summary:focus-visible {
   gap:10px;
   color:var(--text);
   font-weight:650;
-}
-.brand-mark {
-  display:grid;
-  place-items:center;
-  width:30px;
-  height:32px;
-  border:1px solid #6266a0;
-  border-radius:7px;
-  background:#292b47;
-  color:#d0d0ff;
-  font:19px Georgia,serif;
-}
-.brand-divider {
-  color:#5e6879;
+  text-transform:none;
 }
 .source-link {
   color:var(--muted);
@@ -221,12 +208,6 @@ a:focus-visible,summary:focus-visible {
 }
 .page-outline .subheading {
   padding-left:19px;
-}
-.sidebar-footer {
-  color:#69788e;
-  font-size:11px;
-  line-height:1.8;
-  margin:42px 14px 10px;
 }
 .main-content {
   min-width:0;
@@ -569,9 +550,6 @@ html {
   .navigation-panel[open] {
     padding-bottom:18px;
   }
-  .sidebar-footer {
-    display:none;
-  }
   .main-content,.library-content {
     padding:32px 22px 48px;
   }
@@ -615,5 +593,24 @@ html {
   }
   .notebook-card:hover {
     transform:none;
+  }
+}
+
+.brand-icon {
+  flex-shrink: 0;
+}
+.brand > span {
+  font-size: 16px;
+  letter-spacing: -.02em;
+}
+.notebook-symbol {
+  display: inline-flex;
+  justify-content: center;
+  width: 24px;
+  flex-shrink: 0;
+}
+@media (max-width: 500px) {
+  .brand > span {
+    font-size: 14px;
   }
 }

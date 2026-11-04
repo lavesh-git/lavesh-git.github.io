@@ -7,16 +7,19 @@ The homepage lists notebooks. Each public notebook has its own top-level folder.
 
 ```text
 Notes/
-  System Design/
+  HLD/
     Index.md                         # Notebook homepage
     Caching/
       Cache Aside Demo.md            # Chapter note; existing URL preserved
-  DSA/
-    Index.md                         # Empty notebook, ready for notes
+  LLD/Index.md
+  DSA/Index.md
+  Networking/Index.md
+  Database/Index.md
+  OS & Linux/Index.md
   Published/assets/                  # Shared drawing sources and images
 ```
 
-The site discovers notebook homepages from `notebook_home: true`.
+The site lists notebook homepages with both `notebook_home: true` and `publish: true`.
 Inside a notebook, nested folders become expandable chapters and subchapters.
 Markdown files become note links. The selected note's H2/H3 headings appear
 under it in the sidebar, linking directly to sections of that page.
@@ -31,20 +34,41 @@ layout: note
 title: Core Java
 description: Language fundamentals and implementation notes.
 notebook_home: true
+icon: "☕"
+publish: true
 color: violet
-order: 3
+order: 7
 permalink: /notebooks/core-java/
 ---
 ```
 
 The public-folder allowlist is intentional: adding a notebook to the website
 should not accidentally publish unrelated personal notes or local settings.
-The currently allowed notebook folders are `System Design/` and `DSA/`.
+The allowed notebook folders are `HLD/`, `LLD/`, `DSA/`, `Networking/`,
+`Database/`, and `OS & Linux/`.
 `.obsidian/`, the original root `Index.md`, and other root folders stay ignored.
+
+## Choose icons and notebook visibility
+
+Each notebook's `Index.md` has two editable properties:
+
+```yaml
+icon: "🏗️"
+publish: true
+```
+
+Set `icon` to any emoji; the same icon appears on the card and in the sidebar.
+If `icon` is missing, the site uses 📚. Set `publish: false` to hide the notebook
+from both lists. Notebooks without `publish: true` are hidden by default.
+Use actual YAML booleans (`true` or `false`), not quoted strings.
+
+`publish` controls discovery in the UI, not privacy: direct page URLs and tracked
+files in this public repository remain accessible. The separate Jekyll property
+`published: false` prevents an individual page from being generated.
 
 ## Add chapters and notes
 
-Create a note at any depth, for example `System Design/Storage/Indexes/B-Trees.md`:
+Create a note at any depth, for example `HLD/Storage/Indexes/B-Trees.md`:
 
 ```yaml
 ---
@@ -71,7 +95,8 @@ still public in this GitHub repository**. Keep private notes outside allowed fol
 
 The website displays the exported SVG; the drawing remains editable in Obsidian.
 Standard Markdown image links work in both the vault and the website.
-The existing demo remains at `/notes/cache-aside/`.
+The existing demo remains at `/notes/cache-aside/`. The former System Design
+notebook URL redirects to `/notebooks/hld/`.
 
 ## Validation
 

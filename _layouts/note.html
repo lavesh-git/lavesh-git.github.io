@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title | escape }} · {{ site.title | escape }}</title>
+  <title>{% unless page.library_home %}{{ page.title | escape }} · {% endunless %}{{ site.title | escape }}</title>
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
   <meta name="description" content="{{ page.description | default: site.description | escape }}">
   <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.github.build_revision }}">
   <script src="{{ '/assets/navigation.js' | relative_url }}?v={{ site.github.build_revision }}" defer></script>
 </head>
 <body>
-  {% assign notebooks = site.pages | where: 'notebook_home', true | sort: 'order' %}
+  {% assign notebooks = site.pages | where: 'notebook_home', true | where: 'publish', true | sort: 'order' %}
   {% assign current_folder = page.path | split: '/' | first %}
   {% assign current_notebook = nil %}
   {% for notebook in notebooks %}
@@ -18,7 +19,7 @@
   {% endfor %}
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark" aria-hidden="true">L</span> LAVESH <span class="brand-divider">/</span> NOTES</a>
+    <a class="brand" href="{{ '/' | relative_url }}"><img class="brand-icon" src="{{ '/assets/favicon.svg' | relative_url }}" width="32" height="32" alt=""><span>{{ site.title | escape }}</span></a>
     <a class="source-link" href="https://github.com/lavesh-git/lavesh-git.github.io">View source ↗</a>
   </header>
   <div class="workspace">
@@ -31,7 +32,7 @@
           <ul class="notebook-list">
             {% for notebook in notebooks %}
             <li><a class="notebook-link{% if current_notebook.url == notebook.url %} selected{% endif %}" href="{{ notebook.url | relative_url }}"{% if page.url == notebook.url %} aria-current="page"{% endif %}>
-              <span class="notebook-symbol {{ notebook.color | escape }}" aria-hidden="true">▤</span><span>{{ notebook.title | escape }}</span>
+              <span class="notebook-symbol {{ notebook.color | escape }}" aria-hidden="true">{{ notebook.icon | default: '📚' | escape }}</span><span>{{ notebook.title | escape }}</span>
             </a></li>
             {% endfor %}
           </ul>
@@ -42,7 +43,6 @@
           <nav id="chapter-tree" aria-label="Chapters in {{ current_notebook.title | escape }}">{% include notebook-links.html notebook=current_notebook %}</nav>
         </div>
         {% endif %}
-        <p class="sidebar-footer">A little more connected,<br>one note at a time.</p>
       </details>
     </aside>
     <main id="main-content" class="main-content{% if page.library_home %} library-content{% endif %}" tabindex="-1">
@@ -71,7 +71,7 @@
     "currentPath": {{ page.path | jsonify }},
     "currentUrl": {{ page.url | relative_url | jsonify }},
     "notebooks": [{% for notebook in notebooks %}{% unless forloop.first %},{% endunless %}{"title": {{ notebook.title | jsonify }}, "folder": {{ notebook.path | split: '/' | first | jsonify }}, "url": {{ notebook.url | relative_url | jsonify }}}{% endfor %}],
-    "notes": [{% assign separator = '' %}{% for note in site.pages %}{% if note.layout == 'note' and note.notebook_home != true and note.library_home != true and note.published != false %}{{ separator }}{"title": {{ note.title | default: note.name | remove: '.md' | jsonify }}, "path": {{ note.path | jsonify }}, "url": {{ note.url | relative_url | jsonify }}, "order": {{ note.order | default: 9999 | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}]
+    "notes": [{% assign separator = '' %}{% for notebook in notebooks %}{% assign notebook_folder = notebook.path | split: '/' | first %}{% for note in site.pages %}{% assign note_folder = note.path | split: '/' | first %}{% if note_folder == notebook_folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{{ separator }}{"title": {{ note.title | default: note.name | remove: '.md' | jsonify }}, "path": {{ note.path | jsonify }}, "url": {{ note.url | relative_url | jsonify }}, "order": {{ note.order | default: 9999 | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}{% endfor %}]
   }
   {% endcapture %}
   <script id="library-data" type="application/json">{{ library_json | replace: '</', '<\/' }}</script>

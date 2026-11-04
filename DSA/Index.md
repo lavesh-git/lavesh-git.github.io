@@ -1,12 +1,14 @@
 ---
 layout: note
-title: DSA
-description: Data structures, algorithms, and patterns for solving problems.
-category: Notebook / 02
+title: "DSA"
+description: "Data structures, algorithms, and patterns for solving problems."
+category: Notebook / 03
 notebook_home: true
+icon: "🧠"
+publish: true
 color: mint
-order: 2
+order: 3
 permalink: /notebooks/dsa/
 ---
 
-A home for problem-solving patterns, worked examples, and implementation notes.
+Data structures, algorithms, and patterns for solving problems.

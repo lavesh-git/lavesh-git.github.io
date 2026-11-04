@@ -14,9 +14,19 @@
 !/scripts/**
 !/DSA/
 !/DSA/**
-!/System Design/
-!/System Design/**
 !/Published/
 !/Published/**
 !/PUBLISHING.md
+!/HLD/
+!/HLD/**
+!/LLD/
+!/LLD/**
+!/Networking/
+!/Networking/**
+!/Database/
+!/Database/**
+!/OS & Linux/
+!/OS & Linux/**
+!/redirects/
+!/redirects/**
 **/.DS_Store
