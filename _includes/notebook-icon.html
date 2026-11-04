@@ -1,5 +1,8 @@
 <svg class="notebook-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
   {% case include.icon %}
+    {% when 'kanban' %}
+      <rect x="2" y="3" width="20" height="18" rx="2"/>
+      <path d="M9 3v18m7-18v18M5 7h1m6 0h1m6 0h1M5 11h1m6 0h1"/>
     {% when 'architecture' %}
       <rect x="8" y="2" width="8" height="6" rx="1.2"/>
       <path d="M12 8v4M4 16v-4h16v4M12 12v4"/>

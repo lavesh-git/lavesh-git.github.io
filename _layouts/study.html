@@ -1,0 +1,32 @@
+---
+layout: note
+---
+<section class="study-app" aria-label="Study board">
+  <div class="study-topline">
+    <span class="study-context">Your discovery queue</span>
+    <div class="study-toplinks"><a href="{{ '/study/guide/' | relative_url }}">How it works</a><a id="study-open-local" href="obsidian://open?vault=Notebooks&amp;file=Study%20Hub%2FIndex.md">Edit week in Obsidian ↗</a></div>
+  </div>
+  <div class="study-toolbar">
+    <div class="study-views" role="group" aria-label="Board view">
+      <button type="button" data-study-view="subjects" aria-pressed="true">Discoveries</button>
+      <button type="button" data-study-view="progress" aria-pressed="false">Progress</button>
+      <button type="button" data-study-view="backlog" aria-pressed="false">Backlog</button>
+      <button type="button" data-study-view="revisit" aria-pressed="false">Revisit</button>
+    </div>
+    <label class="study-week-control">Week<select id="study-week" aria-label="Discovery week"></select></label>
+  </div>
+  <div class="study-filterbar">
+    <label class="study-search"><span class="sr-only">Search discoveries</span><input type="search" id="study-search" placeholder="Search questions, topics, or notes…"></label>
+    <label><span class="sr-only">Filter by topic tag</span><select id="study-tag" aria-label="Topic tag"><option value="">All topics</option></select></label>
+    <label><span class="sr-only">Filter by priority</span><select id="study-priority" aria-label="Priority"><option value="">All priorities</option><option value="High">High priority</option><option value="Normal">Normal priority</option><option value="Low">Low priority</option></select></label>
+  </div>
+  <div class="study-summary"><p id="study-summary" role="status" aria-live="polite"></p><a id="study-review-link" hidden>Weekly review →</a></div>
+  <div id="study-board" class="study-board" aria-label="Discoveries grouped into columns"></div>
+  <noscript><p class="empty-state">Enable JavaScript to filter this board, or open a weekly table below.</p><ul>{% assign weeks = site.pages | where: 'type', 'study-week' | sort: 'week' | reverse %}{% for week in weeks %}<li><a href="{{ week.url | relative_url }}">{{ week.week | escape }}</a></li>{% endfor %}</ul></noscript>
+</section>
+{% if page.type == 'study-week' %}
+<section class="study-review" aria-label="Weekly focus and review">{{ content }}</section>
+{% else %}
+<div class="study-footnote"><span class="study-example-label">One note per week</span><p>Edit rows in Obsidian. Cards are views of your weekly tables; detailed notes stay in your notebooks.</p></div>
+{% endif %}
+{% include study-data.html %}

@@ -5,7 +5,7 @@ description: Operating system fundamentals and practical Linux notes.
 category: Notebook / 06
 notebook_home: true
 icon: terminal
-publish: false
+publish: true
 color: mint
 order: 6
 permalink: /notebooks/os-linux/

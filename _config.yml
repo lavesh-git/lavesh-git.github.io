@@ -11,6 +11,6 @@ kramdown:
 exclude:
   - PUBLISHING.md
   - scripts
-  - Notebooks/HLD/assets/cache-aside.excalidraw.md
   - Notebooks/.obsidian
   - Notebooks/.trash
+  - Notebooks/Study Hub/Templates

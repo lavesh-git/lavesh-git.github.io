@@ -5,7 +5,7 @@ description: Object-oriented design, design patterns, and maintainable implement
 category: Notebook / 02
 notebook_home: true
 icon: code
-publish: false
+publish: true
 color: violet
 order: 2
 permalink: /notebooks/lld/

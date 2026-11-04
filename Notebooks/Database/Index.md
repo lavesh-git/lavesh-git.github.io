@@ -5,7 +5,7 @@ description: Data modelling, storage engines, indexes, and transactions.
 category: Notebook / 05
 notebook_home: true
 icon: database
-publish: false
+publish: true
 color: violet
 order: 5
 permalink: /notebooks/database/

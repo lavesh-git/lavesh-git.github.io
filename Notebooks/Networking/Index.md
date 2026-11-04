@@ -5,7 +5,7 @@ description: Protocols, connections, and how systems communicate.
 category: Notebook / 04
 notebook_home: true
 icon: network
-publish: false
+publish: true
 color: mint
 order: 4
 permalink: /notebooks/networking/

@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'liquid', '4.0.4'
+gem 'kramdown', '2.5.2'
+gem 'kramdown-parser-gfm', '1.1.0'
+gem 'rouge', '3.30.0'
+gem 'webrick', '1.9.2'

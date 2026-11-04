@@ -1,0 +1,11 @@
+{% assign vault_prefix = site.notebooks_dir | append: '/' %}
+{% assign reviews = site.pages | where: 'type', 'study-week' | sort: 'week' %}
+{% capture study_json %}
+{
+  "selectedWeek": {{ page.week | default: '' | jsonify }},
+  "weeks": [{% for review in reviews %}{% unless forloop.first %},{% endunless %}{"week": {{ review.week | jsonify }}, "url": {{ review.url | relative_url | jsonify }}, "path": {{ review.path | remove_first: vault_prefix | jsonify }}, "html": {{ review.content | markdownify | jsonify }}}{% endfor %}],
+  "notes": [{% assign separator = '' %}{% for note in site.pages %}{% if note.path contains vault_prefix and note.published != false %}{{ separator }}{"path": {{ note.path | remove_first: vault_prefix | remove: '.md' | jsonify }}, "title": {{ note.title | default: note.name | jsonify }}, "url": {{ note.url | relative_url | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}]
+}
+{% endcapture %}
+<script id="study-data" type="application/json">{{ study_json | replace: '</', '<\/' }}</script>
+<script src="{{ '/assets/study-hub.js' | relative_url }}?v={{ site.github.build_revision }}" defer></script>
