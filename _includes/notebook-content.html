@@ -1,0 +1,25 @@
+{%- comment -%}
+Notes use vault-root asset paths. Prefix those paths only in rendered HTML,
+so the same Markdown works in Obsidian and on the website.
+{%- endcomment -%}
+{%- assign rendered_content = include.content -%}
+{%- assign all_notebooks = site.pages | where: 'notebook_home', true -%}
+{%- for asset_notebook in all_notebooks -%}
+  {%- assign asset_folder = asset_notebook.path | remove_first: vault_prefix | split: '/' | first -%}
+  {%- assign vault_asset_path = '/' | append: asset_folder | append: '/assets/' -%}
+  {%- assign site_asset_path = '/' | append: site.notebooks_dir | append: vault_asset_path | relative_url | uri_escape | escape -%}
+  {%- assign raw_asset_path = vault_asset_path | escape -%}
+  {%- assign escaped_asset_path = vault_asset_path | uri_escape | escape -%}
+  {%- assign encoded_folder = asset_folder | url_encode | replace: '+', '%20' -%}
+  {%- assign encoded_asset_path = '/' | append: encoded_folder | append: '/assets/' -%}
+  {%- assign asset_attributes = 'src,href' | split: ',' -%}
+  {%- for attribute in asset_attributes -%}
+    {%- assign attribute_start = attribute | append: '="' -%}
+    {%- assign raw_attribute = attribute_start | append: raw_asset_path -%}
+    {%- assign escaped_attribute = attribute_start | append: escaped_asset_path -%}
+    {%- assign encoded_attribute = attribute_start | append: encoded_asset_path -%}
+    {%- assign site_attribute = attribute_start | append: site_asset_path -%}
+    {%- assign rendered_content = rendered_content | replace: raw_attribute, site_attribute | replace: escaped_attribute, site_attribute | replace: encoded_attribute, site_attribute -%}
+  {%- endfor -%}
+{%- endfor -%}
+{{- rendered_content -}}

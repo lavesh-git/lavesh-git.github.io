@@ -1,9 +1,10 @@
-{% assign folder = include.notebook.path | split: '/' | first %}
+{% assign vault_prefix = site.notebooks_dir | append: '/' %}
+{% assign folder = include.notebook.path | remove_first: vault_prefix | split: '/' | first %}
 {% assign count = 0 %}
 <ul class="fallback-notes">
   {% assign sorted_notes = site.pages | sort: 'path' %}
   {% for note in sorted_notes %}
-    {% assign note_folder = note.path | split: '/' | first %}
+    {% assign note_folder = note.path | remove_first: vault_prefix | split: '/' | first %}
     {% if note_folder == folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}
       {% assign count = count | plus: 1 %}
       <li><a href="{{ note.url | relative_url }}"{% if note.url == page.url %} aria-current="page"{% endif %}>{{ note.title | default: note.name | escape }}</a></li>

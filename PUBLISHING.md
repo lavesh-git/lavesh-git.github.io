@@ -1,24 +1,35 @@
 # Publishing notebooks
 
-The Obsidian **Notes** vault is connected to `lavesh-git/lavesh-git.github.io`.
-The homepage lists notebooks. Each public notebook has its own top-level folder.
+Open **Notebooks/** as the Obsidian vault. Its parent **Notes/** remains the Git
+repository connected to `lavesh-git/lavesh-git.github.io`.
 
 ## Current structure
 
 ```text
-Notes/
-  HLD/
-    Index.md                         # Notebook homepage
-    Caching/
-      Cache Aside Demo.md            # Chapter note; existing URL preserved
-    assets/                          # HLD drawings, images, and exports
-  LLD/Index.md
-  DSA/Index.md
-  Networking/Index.md
-  Database/Index.md
-  OS & Linux/Index.md
-  assets/                            # Site-wide CSS, scripts, and favicon
+Notes/                               # Git repository root
+  .git/
+  _includes/
+  _layouts/
+  _config.yml
+  index.html
+  assets/                            # Website styles, scripts, and favicon
+  Notebooks/                         # Open this folder in Obsidian
+    .obsidian/                       # Local settings and installed plugins
+    HLD/
+      Index.md
+      Caching/Cache Aside Demo.md
+      assets/                        # HLD drawings, images, and exports
+    LLD/Index.md
+    DSA/Index.md
+    Networking/Index.md
+    Database/Index.md
+    OS & Linux/Index.md
 ```
+
+Obsidian Git on desktop discovers the parent repository. Leave **Limit file
+operations to the vault** disabled to manage the whole repository. Pull and push
+operate on the parent repository and sync website files as well as notebooks.
+Do not initialize a second Git repository inside `Notebooks/`.
 
 The site lists notebook homepages with both `notebook_home: true` and `publish: true`.
 Inside a notebook, nested folders become expandable chapters and subchapters.
@@ -27,7 +38,7 @@ under it in the sidebar, linking directly to sections of that page.
 
 ## Add a notebook
 
-Create a top-level folder, allow that folder in `.gitignore`, and add `Index.md`:
+Create a folder inside `Notebooks/` and add its `Index.md`:
 
 ```yaml
 ---
@@ -43,11 +54,10 @@ permalink: /notebooks/core-java/
 ---
 ```
 
-The public-folder allowlist is intentional: adding a notebook to the website
-should not accidentally publish unrelated personal notes or local settings.
-The allowed notebook folders are `HLD/`, `LLD/`, `DSA/`, `Networking/`,
-`Database/`, and `OS & Linux/`.
-`.obsidian/`, the original root `Index.md`, and other root folders stay ignored.
+Git tracks the contents of `Notebooks/`, except `.obsidian/`, `.trash/`, and
+`.DS_Store`. Existing visibility settings in each notebook's `Index.md` still
+control which notebooks appear on the website. Other root folders and the
+original root `Index.md` stay ignored.
 
 ## Choose icons and notebook visibility
 
@@ -95,7 +105,7 @@ Chapters are derived from folders, not URL paths. No separate menu file is neede
 `order` is optional; otherwise notes use natural alphabetical order (2 before 10).
 Folders use their earliest note's order. Empty folders do not appear as chapters.
 Use `published: false` for drafts, but remember that **tracked source files are
-still public in this GitHub repository**. Keep private notes outside allowed folders.
+still public in this GitHub repository**. Keep private notes outside this public repository.
 
 ## Edit diagrams and publish
 
@@ -111,12 +121,14 @@ images, and other attachments inside that notebook's `assets/` folder. For
 example, use `HLD/assets/` for HLD notes and `LLD/assets/` for LLD notes.
 The root `assets/` folder is reserved for shared website code and the favicon.
 Use vault-root Markdown links such as `![Diagram](/HLD/assets/example.svg)`
-so image paths work in both Obsidian and GitHub Pages, even with custom permalinks.
+inside Obsidian. The site converts these paths to `/Notebooks/HLD/assets/...`
+when rendering HTML, so they work with custom permalinks. Keep the `Notebooks/`
+prefix out of Markdown image paths. Obsidian deep links use `vault=Notebooks`.
 The existing demo remains at `/notes/cache-aside/`. The former System Design
 notebook URL redirects to `/notebooks/hld/`.
 
 ## Validation
 
-Run `node scripts/test-navigation.js` for the folder-tree and URL checks.
+From the repository root, run `node scripts/test-navigation.js` for the folder-tree and URL checks.
 GitHub Pages validates the Jekyll build. Notebook links also work without
 JavaScript; expandable folder grouping and the current-page outline enhance them.

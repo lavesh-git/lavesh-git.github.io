@@ -19,7 +19,7 @@ The database remains the source of truth. A cache speeds up reads, but adds ques
 
 ![Excalidraw diagram showing the client, API, cache lookup, and database fallback](/HLD/assets/cache-aside.excalidraw.svg)
 
-[Open the editable Excalidraw drawing in Obsidian](obsidian://open?vault=Notes&file=HLD%2Fassets%2Fcache-aside.excalidraw.md)
+[Open the editable Excalidraw drawing in Obsidian](obsidian://open?vault=Notebooks&file=HLD%2Fassets%2Fcache-aside.excalidraw.md)
 
 1. A client asks the API for a user.
 2. The API looks up the user in the cache.

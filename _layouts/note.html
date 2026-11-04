@@ -10,11 +10,12 @@
   <script src="{{ '/assets/navigation.js' | relative_url }}?v={{ site.github.build_revision }}" defer></script>
 </head>
 <body>
+  {% assign vault_prefix = site.notebooks_dir | append: '/' %}
   {% assign notebooks = site.pages | where: 'notebook_home', true | where: 'publish', true | sort: 'order' %}
-  {% assign current_folder = page.path | split: '/' | first %}
+  {% assign current_folder = page.path | remove_first: vault_prefix | split: '/' | first %}
   {% assign current_notebook = nil %}
   {% for notebook in notebooks %}
-    {% assign notebook_folder = notebook.path | split: '/' | first %}
+    {% assign notebook_folder = notebook.path | remove_first: vault_prefix | split: '/' | first %}
     {% if notebook_folder == current_folder %}{% assign current_notebook = notebook %}{% endif %}
   {% endfor %}
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -56,7 +57,7 @@
       <div class="eyebrow">{{ page.category | default: 'Learning notebook' | escape }}</div>
       <h1>{{ page.title | escape }}</h1>
       {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
-      <article class="note-content">{{ content }}</article>
+      <article class="note-content">{% include notebook-content.html content=content %}</article>
       {% if page.notebook_home %}
       <section class="notebook-contents" aria-labelledby="chapters-title">
         <h2 id="chapters-title">Chapters &amp; notes</h2>
@@ -68,10 +69,10 @@
   </div>
   {% capture library_json %}
   {
-    "currentPath": {{ page.path | jsonify }},
+    "currentPath": {{ page.path | remove_first: vault_prefix | jsonify }},
     "currentUrl": {{ page.url | relative_url | jsonify }},
-    "notebooks": [{% for notebook in notebooks %}{% unless forloop.first %},{% endunless %}{"title": {{ notebook.title | jsonify }}, "folder": {{ notebook.path | split: '/' | first | jsonify }}, "url": {{ notebook.url | relative_url | jsonify }}}{% endfor %}],
-    "notes": [{% assign separator = '' %}{% for notebook in notebooks %}{% assign notebook_folder = notebook.path | split: '/' | first %}{% for note in site.pages %}{% assign note_folder = note.path | split: '/' | first %}{% if note_folder == notebook_folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{{ separator }}{"title": {{ note.title | default: note.name | remove: '.md' | jsonify }}, "path": {{ note.path | jsonify }}, "url": {{ note.url | relative_url | jsonify }}, "order": {{ note.order | default: 9999 | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}{% endfor %}]
+    "notebooks": [{% for notebook in notebooks %}{% unless forloop.first %},{% endunless %}{"title": {{ notebook.title | jsonify }}, "folder": {{ notebook.path | remove_first: vault_prefix | split: '/' | first | jsonify }}, "url": {{ notebook.url | relative_url | jsonify }}}{% endfor %}],
+    "notes": [{% assign separator = '' %}{% for notebook in notebooks %}{% assign notebook_folder = notebook.path | remove_first: vault_prefix | split: '/' | first %}{% for note in site.pages %}{% assign note_folder = note.path | remove_first: vault_prefix | split: '/' | first %}{% if note_folder == notebook_folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{{ separator }}{"title": {{ note.title | default: note.name | remove: '.md' | jsonify }}, "path": {{ note.path | remove_first: vault_prefix | jsonify }}, "url": {{ note.url | relative_url | jsonify }}, "order": {{ note.order | default: 9999 | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}{% endfor %}]
   }
   {% endcapture %}
   <script id="library-data" type="application/json">{{ library_json | replace: '</', '<\/' }}</script>

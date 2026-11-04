@@ -12,19 +12,11 @@
 !/assets/**
 !/scripts/
 !/scripts/**
-!/DSA/
-!/DSA/**
 !/PUBLISHING.md
-!/HLD/
-!/HLD/**
-!/LLD/
-!/LLD/**
-!/Networking/
-!/Networking/**
-!/Database/
-!/Database/**
-!/OS & Linux/
-!/OS & Linux/**
 !/redirects/
 !/redirects/**
+!/Notebooks/
+!/Notebooks/**
+/Notebooks/.obsidian/
+/Notebooks/.trash/
 **/.DS_Store

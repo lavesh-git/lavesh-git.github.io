@@ -2,6 +2,7 @@ title: "Lavesh's Notes"
 description: "A notebook for understanding systems."
 url: "https://lavesh-git.github.io"
 baseurl: ""
+notebooks_dir: Notebooks
 markdown: kramdown
 highlighter: rouge
 kramdown:
@@ -10,4 +11,6 @@ kramdown:
 exclude:
   - PUBLISHING.md
   - scripts
-  - HLD/assets/cache-aside.excalidraw.md
+  - Notebooks/HLD/assets/cache-aside.excalidraw.md
+  - Notebooks/.obsidian
+  - Notebooks/.trash
