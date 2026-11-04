@@ -1,0 +1,12 @@
+# Publish only deliberately selected folders and website files.
+/*
+!/.gitignore
+!/README.md
+!/_config.yml
+!/index.html
+!/_layouts/
+!/_layouts/**
+!/Published/
+!/Published/**
+!/PUBLISHING.md
+**/.DS_Store

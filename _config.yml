@@ -1,0 +1,12 @@
+title: "Lavesh / Notes"
+description: "A notebook for understanding systems."
+url: "https://lavesh-git.github.io"
+baseurl: ""
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+exclude:
+  - PUBLISHING.md
+  - Published/assets/cache-aside.excalidraw.md
