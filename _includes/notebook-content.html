@@ -18,8 +18,6 @@ but omit it here only when the opening H1 repeats that same title.
   {%- endif -%}
 {%- endif -%}
 {%- assign all_notebooks = site.pages | where: 'notebook_home', true -%}
-{%- assign study_roots = site.pages | where: 'study_hub', true -%}
-{%- assign all_notebooks = all_notebooks | concat: study_roots -%}
 {%- for asset_notebook in all_notebooks -%}
   {%- assign asset_folder = asset_notebook.path | remove_first: vault_prefix | split: '/' | first -%}
   {%- assign vault_asset_path = '/' | append: asset_folder | append: '/assets/' -%}

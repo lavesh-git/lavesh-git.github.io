@@ -14,4 +14,3 @@ exclude:
   - scripts
   - Notebooks/.obsidian
   - Notebooks/.trash
-  - Notebooks/Study Hub/Templates

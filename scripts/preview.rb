@@ -102,7 +102,7 @@ def build_site
       layout = data['layout']
     end
     # Validate generated data before making a preview available.
-    content.scan(/<script id="(?:study|library)-data" type="application\/json">(.*?)<\/script>/m).each { |match| JSON.parse(match.first) }
+    content.scan(/<script id="library-data" type="application\/json">(.*?)<\/script>/m).each { |match| JSON.parse(match.first) }
     path = URI::DEFAULT_PARSER.unescape(page['url'])
     path += 'index.html' if path.end_with?('/')
     output[path] = [content, 'text/html; charset=utf-8']
@@ -149,5 +149,5 @@ server.mount_proc('/') do |request, response|
 end
 trap('INT') { server.shutdown }
 trap('TERM') { server.shutdown }
-warn "Local review: http://127.0.0.1:#{options[:port]}/study/ (Ctrl+C to stop)"
+warn "Local review: http://127.0.0.1:#{options[:port]}/library-preview/ (Ctrl+C to stop)"
 server.start
