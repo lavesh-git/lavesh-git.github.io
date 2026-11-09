@@ -1,0 +1,12 @@
+{
+  "name": "notes-excalidraw-export",
+  "private": true,
+  "description": "Build-time Excalidraw exports for the notebook site",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@excalidraw/cli": "0.3.0",
+    "lz-string": "1.5.0"
+  }
+}

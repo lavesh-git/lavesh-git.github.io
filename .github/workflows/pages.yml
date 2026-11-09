@@ -37,6 +37,16 @@ jobs:
                   raise SystemExit('Library preview placeholder is missing')
               file.write_text(content.replace('/library-preview/', path))
           PYCODE
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: scripts/excalidraw/package-lock.json
+      - name: Export Excalidraw diagrams
+        run: |
+          npm ci --prefix scripts/excalidraw
+          node scripts/excalidraw/export.cjs
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:

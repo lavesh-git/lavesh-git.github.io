@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.github.build_revision }}">
   {% if page.study_hub %}<link rel="stylesheet" href="{{ '/assets/study-hub.css' | relative_url }}?v={{ site.github.build_revision }}">{% endif %}
   <script src="{{ '/assets/navigation.js' | relative_url }}?v={{ site.github.build_revision }}" defer></script>
+  <script src="{{ '/assets/diagram-viewer.js' | relative_url }}?v={{ site.github.build_revision }}" defer></script>
 </head>
 <body>
   {% assign vault_prefix = site.notebooks_dir | append: '/' %}
