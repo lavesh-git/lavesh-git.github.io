@@ -28,7 +28,7 @@
           <a class="top-navigation-link{% if page.library_home %} active{% endif %}" href="{{ site.library_path | relative_url }}"{% if page.library_home %} aria-current="page"{% endif %}>All notebooks</a>
         </nav>
   </header>
-  <div class="workspace{% unless current_notebook %} workspace-full{% endunless %}">
+  <div class="workspace{% unless current_notebook %} workspace-full{% endunless %}{% if current_notebook and page.notebook_home != true %} workspace-note{% endif %}">
     {% if current_notebook %}
     <aside class="sidebar" aria-label="Notebook navigation">
       <details class="navigation-panel" open>
@@ -44,8 +44,8 @@
       </details>
     </aside>
     {% endif %}
-    <main id="main-content" class="main-content{% if page.library_home %} library-content{% endif %}{% if current_notebook %} notebook-reading{% endif %}{% if page.notebook_home %} notebook-home{% endif %}" tabindex="-1">
-      {% if current_notebook %}<div class="notebook-sheet">{% endif %}
+    <main id="main-content" class="main-content{% if page.library_home %} library-content{% endif %}{% if current_notebook %} notebook-reading{% endif %}{% if current_notebook and page.notebook_home != true %} notebook-page{% endif %}{% if page.notebook_home %} notebook-home{% endif %}" tabindex="-1">
+      {% if current_notebook and page.notebook_home %}<div class="notebook-sheet">{% endif %}
       {% if current_notebook %}
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <a href="{{ site.library_path | relative_url }}">Notebooks</a><span aria-hidden="true">/</span>
@@ -54,7 +54,7 @@
       </nav>
       {% endif %}
       {% unless page.library_home %}
-      <div class="eyebrow">{{ page.category | default: 'Learning notebook' | escape }}</div>
+      {% if page.category %}<div class="eyebrow">{{ page.category | escape }}</div>{% endif %}
       <div class="notebook-title-row">{% if page.notebook_home %}<span class="notebook-title-icon" aria-hidden="true">{% include notebook-icon.html icon=page.icon %}</span>{% endif %}<h1>{{ display_title | escape }}</h1></div>
       {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
       {% endunless %}
@@ -69,8 +69,7 @@
         <div id="notebook-contents">{% include notebook-links.html notebook=page %}</div>
       </section>
       {% endif %}
-      {% if current_notebook %}</div>{% endif %}
-      <footer class="page-footer">Written in Obsidian · Published with GitHub Pages</footer>
+      {% if current_notebook and page.notebook_home %}</div>{% endif %}
     </main>
   </div>
   {% capture library_json %}
