@@ -20,6 +20,23 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Configure library path
+        env:
+          LIBRARY_PATH: ${{ secrets.LIBRARY_PATH }}
+        run: |
+          python3 - <<'PYCODE'
+          import os, re
+          from pathlib import Path
+          path = os.environ.get('LIBRARY_PATH', '')
+          if not re.fullmatch(r'/library-[a-f0-9]{24}/', path):
+              raise SystemExit('LIBRARY_PATH is missing or has an invalid format')
+          for name in ('_config.yml', 'library.html'):
+              file = Path(name)
+              content = file.read_text()
+              if '/library-preview/' not in content:
+                  raise SystemExit('Library preview placeholder is missing')
+              file.write_text(content.replace('/library-preview/', path))
+          PYCODE
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:

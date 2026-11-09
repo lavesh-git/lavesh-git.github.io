@@ -2,6 +2,7 @@ title: "Lavesh's Notes"
 description: "A notebook for understanding systems."
 url: "https://lavesh-git.github.io"
 baseurl: ""
+library_path: /library-preview/
 notebooks_dir: Notebooks
 markdown: kramdown
 highlighter: rouge

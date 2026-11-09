@@ -1,35 +1,32 @@
 ---
-layout: note
-title: "Lavesh's Notes"
-category: The notebook index
-description: Your personal library for learning, building, and revisiting ideas.
-library_home: true
+layout: null
+title: Lavesh's Notes
 ---
-{% assign vault_prefix = site.notebooks_dir | append: '/' %}
-{% assign notebooks = site.pages | where: 'notebook_home', true | where: 'publish', true | sort: 'order' %}
-<section class="library-section" aria-labelledby="notebooks-title">
-  <div class="section-heading library-heading">
-    <div class="library-title"><h1 id="notebooks-title">Notebooks</h1><span class="count-pill">{{ notebooks.size }} {% if notebooks.size == 1 %}notebook{% else %}notebooks{% endif %}</span></div>
-    <div class="library-filter" hidden>
-      <label class="visually-hidden" for="notebook-filter">Find a notebook</label>
-      <div class="filter-control"><span aria-hidden="true">⌕</span><input id="notebook-filter" type="search" placeholder="Find a notebook" autocomplete="off"></div>
-      <p class="filter-status visually-hidden" role="status" aria-live="polite"></p>
-    </div>
-  </div>
-  {% if notebooks.size == 0 %}<p class="empty-state">No notebooks to display.</p>{% endif %}
-  <div class="notebook-grid">
-    {% for notebook in notebooks %}
-    {% assign folder = notebook.path | remove_first: vault_prefix | split: '/' | first %}
-    {% assign note_count = 0 %}
-    {% for note in site.pages %}
-      {% assign note_folder = note.path | remove_first: vault_prefix | split: '/' | first %}
-      {% if note_folder == folder and note.layout == 'note' and note.notebook_home != true and note.published != false and note.name != 'Index.md' %}{% assign note_count = note_count | plus: 1 %}{% endif %}
-    {% endfor %}
-    <a class="notebook-card {{ notebook.color | escape }}" href="{{ notebook.url | relative_url }}">
-      <div class="card-top"><span class="notebook-icon-tile" aria-hidden="true">{% include notebook-icon.html icon=notebook.icon %}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-      <h3>{{ notebook.title | escape }}</h3>
-      <div class="card-footer"><span>{{ note_count }} {% if note_count == 1 %}note{% else %}notes{% endif %}</span></div>
-    </a>
-    {% endfor %}
-  </div>
-</section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noimageindex">
+  <title>Coming soon</title>
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+  <style>
+    :root { color-scheme:light; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:#f8f9fc; color:#202b3e; }
+    main { width:min(100%,520px); text-align:center; }
+    .mark { display:inline-grid; place-items:center; width:64px; height:64px; border:1px solid #d5d2f0; border-radius:18px; background:#e7e5fb; color:#5148a6; }
+    .eyebrow { margin:32px 0 12px; color:#5148a6; font-size:12px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(38px,8vw,56px); letter-spacing:-.05em; line-height:1.12; }
+    p { margin:18px auto 0; color:#59687d; font-size:16px; line-height:1.7; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c-3-2-6-3-10-2v16c4-1 7 0 10 2 3-2 6-3 10-2V3c-4-1-7 0-10 2Zm0 0v16"/></svg></div>
+    <div class="eyebrow">Lavesh's Notes</div>
+    <h1>Something is taking shape.</h1>
+    <p>I'm putting this space together. Please check back later.</p>
+  </main>
+</body>
+</html>
