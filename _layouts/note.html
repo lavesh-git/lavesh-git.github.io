@@ -35,13 +35,18 @@
       <details class="navigation-panel" open>
         <summary class="mobile-navigation">Browse chapters</summary>
         <div class="chapter-navigation">
+          <a class="sidebar-notebook" href="{{ current_notebook.url | relative_url }}">
+            <span class="sidebar-notebook-icon" aria-hidden="true">{% include notebook-icon.html icon=current_notebook.icon %}</span>
+            <span class="sidebar-notebook-copy"><span class="sidebar-notebook-label">Notebook</span><strong>{{ current_notebook.title | escape }}</strong></span>
+          </a>
           <p class="nav-label">Chapters</p>
           <nav id="chapter-tree" aria-label="Chapters in {{ current_notebook.title | escape }}">{% if page.notebook_home %}{% include notebook-links.html notebook=current_notebook %}{% else %}<p class="empty-state"><a href="{{ current_notebook.url | relative_url }}">Browse all chapters</a></p>{% endif %}</nav>
         </div>
       </details>
     </aside>
     {% endif %}
-    <main id="main-content" class="main-content{% if page.library_home %} library-content{% endif %}{% if page.layout == 'study' %} study-content{% endif %}" tabindex="-1">
+    <main id="main-content" class="main-content{% if page.library_home %} library-content{% endif %}{% if page.layout == 'study' %} study-content{% endif %}{% if current_notebook %} notebook-reading{% endif %}{% if page.notebook_home %} notebook-home{% endif %}" tabindex="-1">
+      {% if current_notebook %}<div class="notebook-sheet">{% endif %}
       {% if current_notebook %}
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <a href="{{ site.library_path | relative_url }}">Notebooks</a><span aria-hidden="true">/</span>
@@ -51,7 +56,7 @@
       {% endif %}
       {% unless page.library_home %}
       <div class="eyebrow">{{ page.category | default: 'Learning notebook' | escape }}</div>
-      <h1>{{ display_title | escape }}</h1>
+      <div class="notebook-title-row">{% if page.notebook_home %}<span class="notebook-title-icon" aria-hidden="true">{% include notebook-icon.html icon=page.icon %}</span>{% endif %}<h1>{{ display_title | escape }}</h1></div>
       {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
       {% endunless %}
       <article class="note-content">{% include notebook-content.html content=content %}</article>
@@ -65,6 +70,7 @@
         <div id="notebook-contents">{% include notebook-links.html notebook=page %}</div>
       </section>
       {% endif %}
+      {% if current_notebook %}</div>{% endif %}
       <footer class="page-footer">Written in Obsidian · Published with GitHub Pages</footer>
     </main>
   </div>

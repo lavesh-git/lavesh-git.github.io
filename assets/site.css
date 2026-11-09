@@ -720,3 +720,53 @@ html {
   .notebook-card { min-height:160px; padding:16px; }
   .notebook-card h3 { font-size:15px; }
 }
+
+/* Notebook reading surface and chapter navigation. */
+.sidebar { background:#f2f4f9; }
+.sidebar-notebook { display:flex; align-items:center; gap:11px; padding:4px 6px 20px; margin:0 2px 18px; border-bottom:1px solid #dce2eb; color:var(--text); text-decoration:none; }
+.sidebar-notebook:hover strong { color:var(--accent); }
+.sidebar-notebook-icon, .notebook-title-icon { display:grid; place-items:center; flex:none; color:#5148a6; background:#eae8fb; border:1px solid #dcd9f1; border-radius:11px; }
+.sidebar-notebook-icon { width:38px; height:38px; }
+.sidebar-notebook-icon svg { width:20px; height:20px; }
+.sidebar-notebook-copy { display:flex; flex-direction:column; gap:1px; line-height:1.35; min-width:0; }
+.sidebar-notebook-copy strong { font-size:14px; overflow-wrap:anywhere; }
+.sidebar-notebook-label { color:#718096; font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; }
+.chapter-navigation .nav-label { margin:0 8px 10px; }
+.sidebar .chapter-tree { font-size:13px; }
+.sidebar .chapter-tree summary { border-radius:7px; padding:7px 8px; line-height:1.5; }
+.sidebar .chapter-tree summary:hover { background:#e7ecf4; }
+.sidebar .chapter-tree ul { margin-left:14px; padding-left:9px; }
+.notebook-reading { max-width:1080px; padding:36px 42px 56px; }
+.notebook-sheet { min-width:0; padding:40px 52px 52px; background:#fff; border:1px solid #e2e7ef; border-radius:16px; box-shadow:0 10px 34px rgba(35,51,80,.045); }
+.notebook-reading .breadcrumbs { margin-bottom:26px; font-size:12px; }
+.notebook-reading .eyebrow { font-size:10px; letter-spacing:.14em; }
+.notebook-title-row { display:flex; align-items:center; gap:15px; }
+.notebook-title-row h1 { min-width:0; overflow-wrap:anywhere; }
+.notebook-title-icon { width:48px; height:48px; }
+.notebook-title-icon svg { width:25px; height:25px; }
+.notebook-reading .subtitle { max-width:650px; margin:8px 0 26px; }
+.notebook-reading .note-content { font-size:15px; line-height:1.85; }
+.notebook-reading .note-content > :first-child { margin-top:0; }
+.notebook-reading .note-content table { margin:24px 0; border:1px solid #e2e7ef; border-radius:10px; }
+.notebook-reading .note-content th { background:#f5f7fb; color:#53627a; font-size:11px; text-transform:uppercase; letter-spacing:.05em; }
+.notebook-reading .note-content td, .notebook-reading .note-content th { padding:12px 14px; }
+.notebook-reading .note-content tr:last-child td { border-bottom:0; }
+.notebook-reading .page-footer { margin-top:24px; padding:0 4px; border:0; }
+.notebook-count { display:inline-flex; margin:2px 0 0; padding:5px 10px; border:1px solid #e1e4f1; border-radius:7px; background:#f7f7fe; color:#56548a; font-size:12px; }
+.notebook-count strong { font-weight:600; }
+.notebook-contents > h2 { margin:34px 0 14px; font-size:19px; }
+.notebook-contents > div > .chapter-tree { padding:5px 16px; border-radius:12px; background:#fff; }
+.notebook-contents > div > .chapter-tree > li + li { border-top:1px solid #edf0f5; }
+.notebook-contents > div > .chapter-tree > li > details > summary { padding:13px 4px; font-weight:600; color:#34435a; }
+.notebook-contents > div > .chapter-tree > li > details > summary:hover { color:var(--accent); }
+@media (max-width:1100px) { .notebook-reading { padding:28px 28px 48px; } .notebook-sheet { padding:36px 38px 44px; } }
+@media (max-width:800px) {
+  .sidebar-notebook { margin:0 0 14px; padding:0 0 14px; }
+  .notebook-reading { padding:24px 18px 40px; }
+  .notebook-sheet { padding:28px 24px 36px; border-radius:13px; }
+  .notebook-reading .breadcrumbs { margin-bottom:22px; }
+}
+@media (max-width:500px) { .notebook-reading { padding:16px 10px 32px; } .notebook-sheet { padding:24px 18px 30px; } .notebook-title-row { gap:11px; } .notebook-title-icon { width:42px; height:42px; } }
+/* Keep tracker columns full width while allowing wide tables to scroll on small screens. */
+.notebook-reading .note-content { overflow-x:auto; }
+.notebook-reading .note-content table { display:table; width:100%; }
