@@ -68,9 +68,8 @@ but omit it here only when the opening H1 repeats that same title.
       {%- if part contains ']]' and target_suffix == '.excalidraw' or target_md_suffix == '.excalidraw.md' -%}
         {%- assign drawing = target | remove_first: '.md' -%}
         {%- assign diagram_path = '/' | append: site.notebooks_dir | append: '/' | append: drawing | append: '.svg' | relative_url | uri_escape | escape -%}
-        {%- assign obsidian_path = drawing | url_encode | replace: '+', '%20' -%}
         {%- assign diagram_title = drawing | split: '/' | last | remove: '.excalidraw' -%}
-        <span class="excalidraw-embed"><button class="excalidraw-open" type="button" aria-label="Enlarge {{ diagram_title | escape }}"><img src="{{ diagram_path }}" alt="{{ diagram_title | escape }} diagram" loading="lazy"><span class="excalidraw-expand">Click to enlarge</span></button><a class="excalidraw-obsidian" href="obsidian://open?vault=Notebooks&amp;file={{ obsidian_path | escape }}">Open in Obsidian ↗</a></span>
+        <span class="excalidraw-embed"><button class="excalidraw-open" type="button" aria-label="Enlarge {{ diagram_title | escape }}"><img src="{{ diagram_path }}" alt="{{ diagram_title | escape }} diagram" loading="lazy"></button></span>
         {%- assign consumed = embed_head | append: ']]' -%}{{- part | remove_first: consumed -}}
       {%- else -%}{{- '![[' -}}{{- part -}}{%- endif -%}
     {%- endfor -%}
