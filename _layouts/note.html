@@ -24,13 +24,11 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="{{ site.library_path | relative_url }}"><img class="brand-icon" src="{{ '/assets/favicon.svg' | relative_url }}" width="32" height="32" alt=""><span>{{ site.title | escape }}</span></a>
-  <nav class="top-navigation" aria-label="Main navigation">
-          <a class="top-navigation-link{% if page.library_home %} active{% endif %}" href="{{ site.library_path | relative_url }}"{% if page.library_home %} aria-current="page"{% endif %}>All notebooks</a>
-        </nav>
   </header>
   <div class="workspace{% unless current_notebook %} workspace-full{% endunless %}{% if current_notebook and page.notebook_home != true %} workspace-note{% endif %}">
     {% if current_notebook %}
     <aside class="sidebar" aria-label="Notebook navigation">
+      <a class="sidebar-return" href="{{ site.library_path | relative_url }}"><span aria-hidden="true">←</span> All notebooks</a>
       <details class="navigation-panel" open>
         <summary class="mobile-navigation">Browse chapters</summary>
         <div class="chapter-navigation">

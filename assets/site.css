@@ -676,19 +676,9 @@ html {
 
 /* Site navigation stays visible; the sidebar is reserved for chapters. */
 .site-header { gap:24px; }
-.top-navigation { display:flex; align-items:center; gap:6px; }
-.site-header .top-navigation-link { display:block; padding:8px 12px; border-radius:8px; color:var(--muted); font-size:13px; font-weight:600; letter-spacing:0; white-space:nowrap; }
-.site-header .top-navigation-link:hover { background:#e7ecf4; color:var(--text); }
-.site-header .top-navigation-link.active { background:#e8e7fa; color:#393084; }
 .workspace-full { grid-template-columns:minmax(0,1fr); }
 .chapter-navigation { margin-top:0; padding-top:0; border-top:0; }
 .chapter-navigation .nav-label { margin-top:0; }
-@media (max-width:500px) {
-  :root { --header-height:106px; }
-  .site-header { height:var(--header-height); align-items:flex-start; flex-direction:column; justify-content:center; gap:4px; padding:8px 20px; }
-  .top-navigation { margin-left:-10px; }
-  .site-header .top-navigation-link { padding:5px 10px; font-size:12px; }
-}
 
 /* Compact library: one heading row and four cards on wide screens. */
 .library-content { max-width:1400px; padding-top:48px; }
@@ -715,6 +705,8 @@ html {
 }
 
 /* Notebook reading surface and chapter navigation. */
+.sidebar-return { display:inline-flex; align-items:center; gap:8px; margin:0 2px 20px; padding:6px; border-radius:7px; color:var(--muted); font-size:13px; font-weight:600; text-decoration:none; }
+.sidebar-return:hover { background:#f1f4f9; color:var(--accent); }
 .sidebar-notebook { display:flex; align-items:center; gap:11px; padding:4px 6px 20px; margin:0 2px 18px; border-bottom:1px solid #dce2eb; color:var(--text); text-decoration:none; }
 .sidebar-notebook:hover strong { color:var(--accent); }
 .sidebar-notebook-icon, .notebook-title-icon { display:grid; place-items:center; flex:none; color:#5148a6; background:#eae8fb; border:1px solid #dcd9f1; border-radius:11px; }
@@ -754,6 +746,7 @@ html {
 .notebook-contents > div > .chapter-tree > li > details > summary:hover { color:var(--accent); }
 @media (max-width:1100px) { .notebook-reading { padding:28px 28px 48px; } .notebook-reading.notebook-page { padding:36px 32px 48px; } .notebook-sheet { padding:36px 38px 44px; } }
 @media (max-width:800px) {
+  .sidebar-return { margin:10px 0 0; }
   .sidebar-notebook { margin:0 0 14px; padding:0 0 14px; }
   .notebook-reading { padding:24px 18px 40px; }
   .notebook-reading.notebook-page { padding:28px 24px 40px; }
