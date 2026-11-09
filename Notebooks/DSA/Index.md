@@ -4,6 +4,7 @@ title: DSA
 description: Data structures, algorithms, and patterns for solving problems.
 category: Notebook / 03
 notebook_home: true
+chapter_index: true
 icon: algorithm
 publish: true
 color: mint
