@@ -73,6 +73,8 @@ Choose a line icon by name; the same SVG appears on the card and in the sidebar:
 | --- | --- |
 | `architecture` | HLD: system architecture |
 | `code` | LLD: implementation and code |
+| `server` | Backend development: services and servers |
+| `browser` | Frontend development: browser interfaces |
 | `algorithm` | DSA: connected data structures |
 | `network` | Networking: connected machines |
 | `database` | Database: storage cylinder |
