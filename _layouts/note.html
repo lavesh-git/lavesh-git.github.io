@@ -23,32 +23,23 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="{{ '/' | relative_url }}"><img class="brand-icon" src="{{ '/assets/favicon.svg' | relative_url }}" width="32" height="32" alt=""><span>{{ site.title | escape }}</span></a>
-    <a class="source-link" href="https://github.com/lavesh-git/lavesh-git.github.io">View source ↗</a>
+  <nav class="top-navigation" aria-label="Main navigation">
+          <a class="top-navigation-link{% if page.library_home %} active{% endif %}" href="{{ '/' | relative_url }}"{% if page.library_home %} aria-current="page"{% endif %}>All notebooks</a>
+          <a class="top-navigation-link{% if page.study_hub %} active{% endif %}" href="{{ '/study/' | relative_url }}"{% if page.url == '/study/' %} aria-current="page"{% endif %}>Study Hub</a>
+        </nav>
   </header>
-  <div class="workspace">
+  <div class="workspace{% unless current_notebook %} workspace-full{% endunless %}">
+    {% if current_notebook %}
     <aside class="sidebar" aria-label="Notebook navigation">
       <details class="navigation-panel" open>
-        <summary class="mobile-navigation">Browse notebooks</summary>
-        <nav aria-label="Notebooks">
-          <a class="library-link{% if page.library_home %} active{% endif %}" href="{{ '/' | relative_url }}"{% if page.library_home %} aria-current="page"{% endif %}><span aria-hidden="true">▦</span> All notebooks</a>
-          <a class="library-link{% if page.study_hub %} active{% endif %}" href="{{ '/study/' | relative_url }}"{% if page.url == '/study/' %} aria-current="page"{% endif %}><span class="study-nav-icon" aria-hidden="true">{% include notebook-icon.html icon='kanban' %}</span> Study Hub</a>
-          <p class="nav-label">Notebooks <span>{{ notebooks.size }}</span></p>
-          <ul class="notebook-list">
-            {% for notebook in notebooks %}
-            <li><a class="notebook-link{% if current_notebook.url == notebook.url %} selected{% endif %}" href="{{ notebook.url | relative_url }}"{% if page.url == notebook.url %} aria-current="page"{% endif %}>
-              <span class="notebook-symbol {{ notebook.color | escape }}" aria-hidden="true">{% include notebook-icon.html icon=notebook.icon %}</span><span>{{ notebook.title | escape }}</span>
-            </a></li>
-            {% endfor %}
-          </ul>
-        </nav>
-        {% if current_notebook %}
+        <summary class="mobile-navigation">Browse chapters</summary>
         <div class="chapter-navigation">
           <p class="nav-label">Chapters</p>
           <nav id="chapter-tree" aria-label="Chapters in {{ current_notebook.title | escape }}">{% include notebook-links.html notebook=current_notebook %}</nav>
         </div>
-        {% endif %}
       </details>
     </aside>
+    {% endif %}
     <main id="main-content" class="main-content{% if page.library_home %} library-content{% endif %}{% if page.layout == 'study' %} study-content{% endif %}" tabindex="-1">
       {% if current_notebook %}
       <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -62,6 +53,10 @@
       {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
       <article class="note-content">{% include notebook-content.html content=content %}</article>
       {% if page.notebook_home %}
+      {% assign notebook_note_count = 0 %}
+      {% capture chapter_names %}{% for note in site.pages %}{% assign note_parts = note.path | remove_first: vault_prefix | split: '/' %}{% if note_parts.first == current_folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{% if note.name != 'Index.md' %}{% assign notebook_note_count = notebook_note_count | plus: 1 %}{% endif %}{% if note_parts.size > 2 %}{{ note_parts[1] }}|{% endif %}{% endif %}{% endfor %}{% endcapture %}
+      {% assign chapter_list = chapter_names | split: '|' | uniq %}
+      <p class="notebook-count"><strong>{{ chapter_list.size }} {% if chapter_list.size == 1 %}chapter{% else %}chapters{% endif %} · {{ notebook_note_count }} {% if notebook_note_count == 1 %}note{% else %}notes{% endif %}</strong></p>
       <section class="notebook-contents" aria-labelledby="chapters-title">
         <h2 id="chapters-title">{% if page.chapter_index %}Chapters{% else %}Chapters &amp; notes{% endif %}</h2>
         <div id="notebook-contents">{% include notebook-links.html notebook=page %}</div>

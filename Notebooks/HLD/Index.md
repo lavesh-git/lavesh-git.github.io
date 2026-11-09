@@ -14,5 +14,3 @@ resolve_note_links: true
 ---
 
 Expand a chapter or numbered topic to browse its subtopics. Click a title to open the note or chapter tracker.
-
-**11 chapters · 269 notes**

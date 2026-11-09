@@ -151,6 +151,23 @@
         }));
       }
     }
+    const filter = document.getElementById('notebook-filter');
+    const filterArea = document.querySelector('.library-filter');
+    if (filter && filterArea) {
+      const cards = Array.from(document.querySelectorAll('.notebook-grid .notebook-card'));
+      const status = filterArea.querySelector('.filter-status');
+      filterArea.hidden = false;
+      filter.addEventListener('input', () => {
+        const query = filter.value.trim().toLocaleLowerCase();
+        let visible = 0;
+        for (const card of cards) {
+          const matches = card.textContent.toLocaleLowerCase().includes(query);
+          card.hidden = !matches;
+          if (matches) visible++;
+        }
+        status.textContent = query ? `${visible} of ${cards.length} notebooks shown` : '';
+      });
+    }
     const panel = document.querySelector('.navigation-panel');
     const mobile = window.matchMedia('(max-width: 800px)');
     if (panel) {

@@ -13,5 +13,3 @@ chapter_index: true
 ---
 
 Expand a chapter or numbered topic to browse its subtopics. Click a title to open its note or chapter tracker.
-
-**15 chapters · 98 notes**
