@@ -48,9 +48,11 @@
         {% else %}<a href="{{ current_notebook.url | relative_url }}">{{ current_notebook.title | escape }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ display_title | escape }}</span>{% endif %}
       </nav>
       {% endif %}
+      {% unless page.library_home %}
       <div class="eyebrow">{{ page.category | default: 'Learning notebook' | escape }}</div>
       <h1>{{ display_title | escape }}</h1>
       {% if page.description %}<p class="subtitle">{{ page.description | escape }}</p>{% endif %}
+      {% endunless %}
       <article class="note-content">{% include notebook-content.html content=content %}</article>
       {% if page.notebook_home %}
       {% assign notebook_note_count = 0 %}

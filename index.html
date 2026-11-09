@@ -8,13 +8,15 @@ library_home: true
 {% assign vault_prefix = site.notebooks_dir | append: '/' %}
 {% assign notebooks = site.pages | where: 'notebook_home', true | where: 'publish', true | sort: 'order' %}
 <section class="library-section" aria-labelledby="notebooks-title">
-  <div class="section-heading"><h2 id="notebooks-title">Notebooks</h2><span class="count-pill">{{ notebooks.size }} {% if notebooks.size == 1 %}notebook{% else %}notebooks{% endif %}</span></div>
-  {% if notebooks.size == 0 %}<p class="empty-state">No notebooks to display.</p>{% endif %}
-  <div class="library-filter" hidden>
-    <label for="notebook-filter">Find a notebook</label>
-    <div class="filter-control"><span aria-hidden="true">⌕</span><input id="notebook-filter" type="search" placeholder="Search by name or topic" autocomplete="off"></div>
-    <p class="filter-status" role="status" aria-live="polite"></p>
+  <div class="section-heading library-heading">
+    <div class="library-title"><h1 id="notebooks-title">Notebooks</h1><span class="count-pill">{{ notebooks.size }} {% if notebooks.size == 1 %}notebook{% else %}notebooks{% endif %}</span></div>
+    <div class="library-filter" hidden>
+      <label class="visually-hidden" for="notebook-filter">Find a notebook</label>
+      <div class="filter-control"><span aria-hidden="true">⌕</span><input id="notebook-filter" type="search" placeholder="Find a notebook" autocomplete="off"></div>
+      <p class="filter-status visually-hidden" role="status" aria-live="polite"></p>
+    </div>
   </div>
+  {% if notebooks.size == 0 %}<p class="empty-state">No notebooks to display.</p>{% endif %}
   <div class="notebook-grid">
     {% for notebook in notebooks %}
     {% assign folder = notebook.path | remove_first: vault_prefix | split: '/' | first %}
@@ -26,8 +28,7 @@ library_home: true
     <a class="notebook-card {{ notebook.color | escape }}" href="{{ notebook.url | relative_url }}">
       <div class="card-top"><span class="notebook-icon-tile" aria-hidden="true">{% include notebook-icon.html icon=notebook.icon %}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
       <h3>{{ notebook.title | escape }}</h3>
-      <p>{{ notebook.description | escape }}</p>
-      <div class="card-footer"><span>{{ note_count }} {% if note_count == 1 %}note{% else %}notes{% endif %}</span><span>Open notebook →</span></div>
+      <div class="card-footer"><span>{{ note_count }} {% if note_count == 1 %}note{% else %}notes{% endif %}</span></div>
     </a>
     {% endfor %}
   </div>

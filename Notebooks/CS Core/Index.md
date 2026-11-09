@@ -3,7 +3,7 @@ layout: note
 title: CS Core
 description: Computer science fundamentals, from networks and databases to operating systems and software engineering.
 category: Notebook / 08
-icon: code
+icon: chip
 color: violet
 notebook_home: true
 publish: true
