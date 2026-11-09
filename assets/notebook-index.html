@@ -1,0 +1,7 @@
+---
+layout: null
+permalink: /assets/notebook-index.json
+---
+{%- assign vault_prefix = site.notebooks_dir | append: '/' -%}
+{%- assign notebooks = site.pages | where: 'notebook_home', true | where: 'publish', true -%}
+{"notes":[{%- assign separator = '' -%}{%- for notebook in notebooks -%}{%- assign notebook_folder = notebook.path | remove_first: vault_prefix | split: '/' | first -%}{%- for note in site.pages -%}{%- assign note_folder = note.path | remove_first: vault_prefix | split: '/' | first -%}{%- if note_folder == notebook_folder and note.layout == 'note' and note.notebook_home != true and note.published != false -%}{{ separator }}{"title":{{ note.title | default: note.name | remove: '.md' | jsonify }},"path":{{ note.path | remove_first: vault_prefix | jsonify }},"url":{{ note.url | relative_url | jsonify }},"order":{{ note.order | default: 9999 | jsonify }}}{%- assign separator = ',' -%}{%- endif -%}{%- endfor -%}{%- endfor -%}]}

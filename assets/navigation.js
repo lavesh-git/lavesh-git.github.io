@@ -132,24 +132,29 @@
       console.error('Could not load notebook navigation.', error);
       return;
     }
-    const folder = data.currentPath.split('/')[0];
-    const notebook = data.notebooks.find(entry => entry.folder === folder);
-    if (notebook) {
-      const tree = buildTree(data.notes, folder);
-      if (tree.length) {
-        const sidebar = document.getElementById('chapter-tree');
-        const contents = document.getElementById('notebook-contents');
-        if (sidebar) sidebar.replaceChildren(renderTree(tree, {
-          currentUrl: data.currentUrl,
-          expandAll: notebook.url === data.currentUrl && !data.chapterIndex,
-          showOutline: true
-        }));
-        if (contents) contents.replaceChildren(renderTree(tree, {
-          currentUrl: data.currentUrl,
-          expandAll: !data.chapterIndex,
-          showOutline: false
-        }));
-      }
+    if (data.notebookFolder && data.indexUrl) {
+      fetch(data.indexUrl)
+        .then(response => {
+          if (!response.ok) throw new Error('Navigation index could not be loaded.');
+          return response.json();
+        })
+        .then(index => {
+          const tree = buildTree(index.notes, data.notebookFolder);
+          if (!tree.length) return;
+          const sidebar = document.getElementById('chapter-tree');
+          const contents = document.getElementById('notebook-contents');
+          if (sidebar) sidebar.replaceChildren(renderTree(tree, {
+            currentUrl: data.currentUrl,
+            expandAll: data.notebookUrl === data.currentUrl && !data.chapterIndex,
+            showOutline: true
+          }));
+          if (contents) contents.replaceChildren(renderTree(tree, {
+            currentUrl: data.currentUrl,
+            expandAll: !data.chapterIndex,
+            showOutline: false
+          }));
+        })
+        .catch(error => console.error('Could not load notebook navigation.', error));
     }
     const filter = document.getElementById('notebook-filter');
     const filterArea = document.querySelector('.library-filter');

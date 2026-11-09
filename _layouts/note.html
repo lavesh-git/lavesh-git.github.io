@@ -35,7 +35,7 @@
         <summary class="mobile-navigation">Browse chapters</summary>
         <div class="chapter-navigation">
           <p class="nav-label">Chapters</p>
-          <nav id="chapter-tree" aria-label="Chapters in {{ current_notebook.title | escape }}">{% include notebook-links.html notebook=current_notebook %}</nav>
+          <nav id="chapter-tree" aria-label="Chapters in {{ current_notebook.title | escape }}">{% if page.notebook_home %}{% include notebook-links.html notebook=current_notebook %}{% else %}<p class="empty-state"><a href="{{ current_notebook.url | relative_url }}">Browse all chapters</a></p>{% endif %}</nav>
         </div>
       </details>
     </aside>
@@ -70,8 +70,9 @@
     "currentPath": {{ page.path | remove_first: vault_prefix | jsonify }},
     "currentUrl": {{ page.url | relative_url | jsonify }},
     "chapterIndex": {{ page.chapter_index | default: false | jsonify }},
-    "notebooks": [{% for notebook in notebooks %}{% unless forloop.first %},{% endunless %}{"title": {{ notebook.title | jsonify }}, "folder": {{ notebook.path | remove_first: vault_prefix | split: '/' | first | jsonify }}, "url": {{ notebook.url | relative_url | jsonify }}}{% endfor %}],
-    "notes": [{% assign separator = '' %}{% for notebook in notebooks %}{% assign notebook_folder = notebook.path | remove_first: vault_prefix | split: '/' | first %}{% for note in site.pages %}{% assign note_folder = note.path | remove_first: vault_prefix | split: '/' | first %}{% if note_folder == notebook_folder and note.layout == 'note' and note.notebook_home != true and note.published != false %}{{ separator }}{"title": {{ note.title | default: note.name | remove: '.md' | jsonify }}, "path": {{ note.path | remove_first: vault_prefix | jsonify }}, "url": {{ note.url | relative_url | jsonify }}, "order": {{ note.order | default: 9999 | jsonify }}}{% assign separator = ',' %}{% endif %}{% endfor %}{% endfor %}]
+    "notebookFolder": {% if current_notebook %}{{ current_folder | jsonify }}{% else %}null{% endif %},
+    "notebookUrl": {% if current_notebook %}{{ current_notebook.url | relative_url | jsonify }}{% else %}null{% endif %},
+    "indexUrl": {{ '/assets/notebook-index.json' | relative_url | append: '?v=' | append: site.github.build_revision | jsonify }}
   }
   {% endcapture %}
   <script id="library-data" type="application/json">{{ library_json | replace: '</', '<\/' }}</script>
